@@ -9,3 +9,19 @@
   box-sizing: border-box;
   background-color: black;
  }
+
+ .starchart {
+  height: 90%;
+  transition: 0.1s, transform 0.1s;
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  transform: translate(-20%, -50%)
+ }
+
+ .overlay {
+  position: absolute;
+  bottom: 0;
+  height: 100%;
+  opacity:1;
+}
