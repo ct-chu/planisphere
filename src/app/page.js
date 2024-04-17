@@ -8,6 +8,7 @@ import { Typography, TextField, Autocomplete, Button, Divider, Stack } from '@mu
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import React, { useState, useEffect } from 'react';
+import { TransformWrapper, TransformComponent, useControls } from "react-zoom-pan-pinch";
 // import NotoSansTC from "/NotoSansTC-VariableFont_wght.ttf"
 
 const yellowStarchart = "/STARMAPv2022_yellow_3600x.png"
@@ -132,12 +133,12 @@ export default function Home() {
 
   useEffect(() => {
     const noSelectElements =
-        document.querySelectorAll(".no-select");
+      document.querySelectorAll(".no-select");
     noSelectElements.forEach((element) => {
-        element.style.webkitUserSelect = "none";
-        element.style.mozUserSelect = "none";
-        element.style.msUserSelect = "none";
-        element.style.userSelect = "none";
+      element.style.webkitUserSelect = "none";
+      element.style.mozUserSelect = "none";
+      element.style.msUserSelect = "none";
+      element.style.userSelect = "none";
     });
   }, []);
 
@@ -160,12 +161,12 @@ export default function Home() {
   }
 
   const rotateToTime = () => {
-    let closestOrigin = rotateDeg - rotateDeg%360
+    let closestOrigin = rotateDeg - rotateDeg % 360
     let selectedMonthOffset = -1 * monthOffsetValues[months.indexOf(month)]
     let selectedDayOffset = -1 * (Number(day) - 1) * dayDeg
     let selectedTimeOffset = timeOffsetValues[time]
     let totalOffset = selectedMonthOffset + selectedDayOffset + selectedTimeOffset
-    setRotateStyle(Math.sqrt(Math.abs(closestOrigin+totalOffset-rotateDeg))/15 + "s ease-in-out")  
+    setRotateStyle(Math.sqrt(Math.abs(closestOrigin + totalOffset - rotateDeg)) / 15 + "s ease-in-out")
     setRotateDeg(closestOrigin + totalOffset)
   }
 
@@ -184,63 +185,63 @@ export default function Home() {
         spacing={1}
       >
         <Typography variant="h1">
-          Interactive<br/>Planisphere<br/>互動旋轉星圖
+          Interactive<br />Planisphere<br />互動旋轉星圖
         </Typography>
         <br /> <br />
-        <Divider sx={{paddingTop: "3vh", paddingBottom: "1vh"}} orientation="horizontal" flexItem>
+        <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
           <Typography variant="h3">Go to Time</Typography>
         </Divider>
         <br />
-          <Autocomplete
-            size="small"
-            disablePortal
-            selectOnFocus
-            options={months}
-            value={month}
-            onChange={(event, newValue) => {
-              setMonth(newValue)
-              setDaysInMonth(newValue)
-            }}
-            sx={{ width: 155, paddingBottom: "1vh" }}
-            renderInput={(params) => <TextField {...params} label="月 Month" />}
-          />
-          <br />
-          <Autocomplete
-            size="small"
-            disablePortal
-            selectOnFocus
-            options={days}
-            value={day}
-            onChange={(event, newValue) => {
-              setDay(newValue)
-            }}
-            sx={{ width: 155, paddingBottom: "1vh" }}
-            renderInput={(params) => <TextField {...params} label="日 Day" />}
-          />
-          <br />
-          <Autocomplete
-            size="small"
-            disablePortal
-            selectOnFocus
-            options={times}
-            value={time}
-            onChange={(eventT, newTime) => {
-              setTime(newTime);
-            }}
-            sx={{ width: 155, paddingBottom: "1vh" }}
-            renderInput={(displayTime) => <TextField {...displayTime} label="時 Time" />}
-          />
-          
+        <Autocomplete
+          size="small"
+          disablePortal
+          selectOnFocus
+          options={months}
+          value={month}
+          onChange={(event, newValue) => {
+            setMonth(newValue)
+            setDaysInMonth(newValue)
+          }}
+          sx={{ width: 155, paddingBottom: "1vh" }}
+          renderInput={(params) => <TextField {...params} label="月 Month" />}
+        />
+        <br />
+        <Autocomplete
+          size="small"
+          disablePortal
+          selectOnFocus
+          options={days}
+          value={day}
+          onChange={(event, newValue) => {
+            setDay(newValue)
+          }}
+          sx={{ width: 155, paddingBottom: "1vh" }}
+          renderInput={(params) => <TextField {...params} label="日 Day" />}
+        />
+        <br />
+        <Autocomplete
+          size="small"
+          disablePortal
+          selectOnFocus
+          options={times}
+          value={time}
+          onChange={(eventT, newTime) => {
+            setTime(newTime);
+          }}
+          sx={{ width: 155, paddingBottom: "1vh" }}
+          renderInput={(displayTime) => <TextField {...displayTime} label="時 Time" />}
+        />
+
         <br />
         <Button
           variant="contained"
           onClick={rotateToTime}
-          style={{backgroundColor: "#bf616a"}}
+          style={{ backgroundColor: "#bf616a" }}
         >
           <Typography variant="h3">GO</Typography>
         </Button>
         <br /> <br />
-        <Divider sx={{paddingTop: "3vh", paddingBottom: "1vh"}} orientation="horizontal" flexItem>
+        <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
           <Typography variant="h3">Animation</Typography>
         </Divider>
         <item>
@@ -295,26 +296,41 @@ export default function Home() {
             }}
             style={{ position: "relative" }}
           >
-            <div className={styles.starchart}>
-              <img height="100%" style={{ transition: rotateStyle, rotate: `${rotateDeg}deg` }} src={yellowStarchart} />
-              <div className={styles.overlay}>
-                <img height="100%" width="100%" src={jacket} />
-              </div>
-            </div>
+            <TransformWrapper
+              wheel={{disabled:true}}
+            >
+              <TransformComponent
+                wrapperStyle={{
+                  width: "100%",
+                  height: "100%",
+                }}
+                contentStyle={{
+                  width: "100%",
+                  height: "100%"
+                }}
+              >
+                <div className={styles.starchart}>
+                  <img height="100%" style={{ transition: rotateStyle, rotate: `${rotateDeg}deg` }} src={yellowStarchart} />
+                  <div className={styles.overlay}>
+                    <img height="100%" width="100%" src={jacket} />
+                  </div>
+                </div>
+              </TransformComponent>
+            </TransformWrapper>
           </Grid>
           <Grid container
             xs={3}
             direction="column"
             justifyContent="space-around"
             height={"100%"}
-            // alignItems="stretch"
+          // alignItems="stretch"
           >
             {/* <Grid item maxHeight={"100vh"}> */}
-              <RightPanel />
+            <RightPanel />
             {/* </Grid> */}
             <Grid item>
               <Typography variant="h4" textAlign={"center"} color="#4c566a">
-                v20240417 by ctchu@HKNEAC 
+                v20240417 by ctchu@HKNEAC
               </Typography>
             </Grid>
           </Grid>
