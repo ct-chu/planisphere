@@ -1,5 +1,5 @@
 .container {
-  padding: 0 2rem;
+  padding: 0 0rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,7 +11,7 @@
  }
 
  .starchart {
-  height: 90%;
+  height: 100%;
   transition: 0.1s, transform 0.1s;
   position: absolute;
   top: 50%;
