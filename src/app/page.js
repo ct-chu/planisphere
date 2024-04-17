@@ -34,9 +34,9 @@ darkTheme.typography.h1 = {
 }
 
 darkTheme.typography.h4 = {
-  fontSize: "0.2 em",
+  fontSize: "0.8rem",
   '@media (max-height:700px)': {
-    fontSize: '0.4rem',
+    fontSize: '0.6rem',
   },
   fontFamily: "NotoSansTC",
 }
