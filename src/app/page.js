@@ -7,7 +7,7 @@ import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import { Typography, TextField, Autocomplete, Button, Divider, Stack } from '@mui/material';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import NotoSansTC from "/NotoSansTC-VariableFont_wght.ttf"
 
 const yellowStarchart = "/STARMAPv2022_yellow_3600x.png"
@@ -118,6 +118,17 @@ export default function Home() {
   //   setRotateDeg(rotateDeg - 10)
   //   console.log(rotateDeg)
   // }
+
+  useEffect(() => {
+    const noSelectElements =
+        document.querySelectorAll(".no-select");
+    noSelectElements.forEach((element) => {
+        element.style.webkitUserSelect = "none";
+        element.style.mozUserSelect = "none";
+        element.style.msUserSelect = "none";
+        element.style.userSelect = "none";
+    });
+  }, []);
 
   const setDaysInMonth = (month) => {
     let dayInM = days31
@@ -260,7 +271,9 @@ export default function Home() {
           alignItems="center"
           justifyContent="space-evenly"
         >
-          <Grid xs={6}
+          <Grid
+            xs={6}
+            className={"no-select"}
             sx={{
               height: "95vh",
               width: "95vh"
