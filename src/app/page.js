@@ -107,7 +107,6 @@ export default function Home() {
   const [day, setDay] = useState(days[0])
   const [time, setTime] = useState(times[24])
   const [rotateStyle, setRotateStyle] = useState(1)
-  const [rotateGesure, setRotateGesture] = useState(false);
   // let root = document.documentElement.starchart
 
   // const rotate10deg = () => {
