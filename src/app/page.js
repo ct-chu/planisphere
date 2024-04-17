@@ -1,12 +1,14 @@
 "use client";
 
 import styles from './page.module.css'
-import Grid from '@mui/material/Unstable_Grid2/Grid2';
-import { Typography, TextField, Autocomplete, Button } from '@mui/material';
-import React, { useState } from 'react';
-
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import Grid from '@mui/material/Unstable_Grid2/Grid2';
+import { Typography, TextField, Autocomplete, Button, Divider, Stack } from '@mui/material';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import React, { useState } from 'react';
+// import NotoSansTC from "/NotoSansTC-VariableFont_wght.ttf"
 
 const yellowStarchart = "/STARMAPv2022_yellow_3600x.png"
 const jacket = "/STARMAPv2022_jacket_3600px.png"
@@ -15,7 +17,18 @@ const darkTheme = createTheme({
   palette: {
     mode: 'dark',
   },
+  typography: {
+    fontFamily: [
+      "NotoSansTC",
+      'sans-serif',
+    ].join(','),
+  }
 });
+
+darkTheme.typography.h1 = {
+  fontSize: "1.5 rem",
+  fontFamily: "NotoSansTC",
+}
 
 export default function Home() {
 
@@ -153,43 +166,58 @@ export default function Home() {
 
   const RightPanel = () => {
     return (
-      <Grid>
-        <Autocomplete
-          disablePortal
-          selectOnFocus
-          options={months}
-          value={month}
-          onChange={(event, newValue) => {
-            setMonth(newValue)
-            setDaysInMonth(newValue)
-          }}
-          sx={{ width: 200 }}
-          renderInput={(params) => <TextField {...params} label="月 Month" />}
-        />
+      <Stack
+        textAlign={"center"}
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+        spacing={1}
+      >
+        <Typography variant="h1">
+          Interactive<br/>Planisphere<br/>互動旋轉星圖
+        </Typography>
+        <br /> <br />
+        <Divider orientation="horizontal" flexItem>
+          Go to Time
+        </Divider>
         <br />
-        <Autocomplete
-          disablePortal
-          selectOnFocus
-          options={days}
-          value={day}
-          onChange={(event, newValue) => {
-            setDay(newValue)
-          }}
-          sx={{ width: 200 }}
-          renderInput={(params) => <TextField {...params} label="日 Day" />}
-        />
-        <br />
-        <Autocomplete
-          disablePortal
-          selectOnFocus
-          options={times}
-          value={time}
-          onChange={(eventT, newTime) => {
-            setTime(newTime);
-          }}
-          sx={{ width: 200 }}
-          renderInput={(displayTime) => <TextField {...displayTime} label="時 Time" />}
-        />
+          <Autocomplete
+            disablePortal
+            selectOnFocus
+            options={months}
+            value={month}
+            onChange={(event, newValue) => {
+              setMonth(newValue)
+              setDaysInMonth(newValue)
+            }}
+            sx={{ width: 155 }}
+            renderInput={(params) => <TextField {...params} label="月 Month" />}
+          />
+          <br />
+          <Autocomplete
+            disablePortal
+            selectOnFocus
+            options={days}
+            value={day}
+            onChange={(event, newValue) => {
+              setDay(newValue)
+            }}
+            sx={{ width: 155 }}
+            renderInput={(params) => <TextField {...params} label="日 Day" />}
+          />
+          <br />
+          <Autocomplete
+            disablePortal
+            selectOnFocus
+            options={times}
+            value={time}
+            onChange={(eventT, newTime) => {
+              setTime(newTime);
+            }}
+            sx={{ width: 155 }}
+            renderInput={(displayTime) => <TextField {...displayTime} label="時 Time" />}
+          />
+          
         <br />
         <Button
           variant="contained"
@@ -197,26 +225,32 @@ export default function Home() {
         >
           GO
         </Button>
-        <Button
-          variant="contained"
-          onClick={rotatem10deg}
-        >
-          &lt;
-        </Button>
-        <Button
-          variant="contained"
-          onClick={rotate10deg}
-        >
-          &gt;
-        </Button>
-        <br />
-        <Button
-          variant="contained"
-          onClick={rotateAnimation}
-        >
-          Anime
-        </Button>
-      </Grid>
+        <br /> <br />
+        <Divider orientation="horizontal" flexItem>
+          Animation
+        </Divider>
+        <item>
+          <Button
+            variant="contained"
+            onClick={rotatem10deg}
+          >
+            &lt;
+          </Button>
+          <Button
+            variant="contained"
+            onClick={rotate10deg}
+          >
+            &gt;
+          </Button>
+          <br />
+          <Button
+            variant="contained"
+            onClick={rotateAnimation}
+          >
+            Anime
+          </Button>
+        </item>
+      </Stack>
     )
   }
 
@@ -250,7 +284,9 @@ export default function Home() {
           </Grid>
           <Grid container
             xs={3}
+            // direction="column"
             justifyContent="center"
+            // alignItems="stretch"
           >
             <RightPanel />
           </Grid>
