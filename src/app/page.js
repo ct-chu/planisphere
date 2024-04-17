@@ -138,18 +138,17 @@ export default function Home() {
     } else {
       setDays(dayInM)
     }
+    setDay(days31[0])
   }
 
   const rotateToTime = () => {
+    let closestOrigin = rotateDeg - rotateDeg%360
     let selectedMonthOffset = -1 * monthOffsetValues[months.indexOf(month)]
     let selectedDayOffset = -1 * (Number(day) - 1) * dayDeg
     let selectedTimeOffset = timeOffsetValues[time]
-    // let selectedTimeOffset = 0
-    setRotateStyle("1s ease-in-out")
-    setRotateDeg(selectedMonthOffset + selectedDayOffset + selectedTimeOffset)
-    // console.log(month)
-    // console.log(time)
-    // console.log(rotateDeg)
+    let totalOffset = selectedMonthOffset + selectedDayOffset + selectedTimeOffset
+    setRotateStyle(Math.sqrt(Math.abs(closestOrigin+totalOffset-rotateDeg))/15 + "s ease-in-out")  
+    setRotateDeg(closestOrigin + totalOffset)
   }
 
   const rotateAnimation = () => {
