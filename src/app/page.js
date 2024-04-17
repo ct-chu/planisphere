@@ -22,11 +22,22 @@ const darkTheme = createTheme({
       "NotoSansTC",
       'sans-serif',
     ].join(','),
-  }
+  },
 });
 
 darkTheme.typography.h1 = {
-  fontSize: "1.5 rem",
+  fontSize: "1.5rem",
+  '@media (max-height:700px)': {
+    fontSize: '1rem',
+  },
+  fontFamily: "NotoSansTC",
+}
+
+darkTheme.typography.h4 = {
+  fontSize: "0.2 em",
+  '@media (max-height:700px)': {
+    fontSize: '0.4rem',
+  },
   fontFamily: "NotoSansTC",
 }
 
@@ -102,17 +113,15 @@ export default function Home() {
   const [rotateStyle, setRotateStyle] = useState(1)
   // let root = document.documentElement.starchart
 
-  const rotate10deg = () => {
-    setRotateDeg(rotateDeg + 10)
-    // root.style.setProperty("--starchart-rotation", rotateDeg, "deg")
-    console.log(rotateDeg)
-  }
+  // const rotate10deg = () => {
+  //   setRotateDeg(rotateDeg + 10)
+  //   console.log(rotateDeg)
+  // }
 
-  const rotatem10deg = () => {
-    setRotateDeg(rotateDeg - 10)
-    // root.style.setProperty("--starchart-rotation", rotateDeg, "deg")
-    console.log(rotateDeg)
-  }
+  // const rotatem10deg = () => {
+  //   setRotateDeg(rotateDeg - 10)
+  //   console.log(rotateDeg)
+  // }
 
   const setDaysInMonth = (month) => {
     let dayInM = days31
@@ -166,10 +175,9 @@ export default function Home() {
 
   const RightPanel = () => {
     return (
-      <Stack
-        textAlign={"center"}
+      <Grid container
+        textAlign="center"
         direction="column"
-        justifyContent="center"
         alignItems="center"
         spacing={1}
       >
@@ -177,11 +185,12 @@ export default function Home() {
           Interactive<br/>Planisphere<br/>互動旋轉星圖
         </Typography>
         <br /> <br />
-        <Divider orientation="horizontal" flexItem>
+        <Divider sx={{paddingTop: "3vh", paddingBottom: "1vh"}} orientation="horizontal" flexItem>
           Go to Time
         </Divider>
         <br />
           <Autocomplete
+            size="small"
             disablePortal
             selectOnFocus
             options={months}
@@ -190,11 +199,12 @@ export default function Home() {
               setMonth(newValue)
               setDaysInMonth(newValue)
             }}
-            sx={{ width: 155 }}
+            sx={{ width: 155, paddingBottom: "1vh" }}
             renderInput={(params) => <TextField {...params} label="月 Month" />}
           />
           <br />
           <Autocomplete
+            size="small"
             disablePortal
             selectOnFocus
             options={days}
@@ -202,11 +212,12 @@ export default function Home() {
             onChange={(event, newValue) => {
               setDay(newValue)
             }}
-            sx={{ width: 155 }}
+            sx={{ width: 155, paddingBottom: "1vh" }}
             renderInput={(params) => <TextField {...params} label="日 Day" />}
           />
           <br />
           <Autocomplete
+            size="small"
             disablePortal
             selectOnFocus
             options={times}
@@ -214,7 +225,7 @@ export default function Home() {
             onChange={(eventT, newTime) => {
               setTime(newTime);
             }}
-            sx={{ width: 155 }}
+            sx={{ width: 155, paddingBottom: "1vh" }}
             renderInput={(displayTime) => <TextField {...displayTime} label="時 Time" />}
           />
           
@@ -226,11 +237,11 @@ export default function Home() {
           GO
         </Button>
         <br /> <br />
-        <Divider orientation="horizontal" flexItem>
+        <Divider sx={{paddingTop: "3vh", paddingBottom: "1vh"}} orientation="horizontal" flexItem>
           Animation
         </Divider>
         <item>
-          <Button
+          {/* <Button
             variant="contained"
             onClick={rotatem10deg}
           >
@@ -241,16 +252,17 @@ export default function Home() {
             onClick={rotate10deg}
           >
             &gt;
-          </Button>
-          <br />
+          </Button> 
+          <br />*/}
           <Button
             variant="contained"
             onClick={rotateAnimation}
+            style={{ textTransform: "none"}}
           >
-            Anime
+            3600x Real Speed
           </Button>
         </item>
-      </Stack>
+      </Grid>
     )
   }
 
@@ -284,11 +296,19 @@ export default function Home() {
           </Grid>
           <Grid container
             xs={3}
-            // direction="column"
-            justifyContent="center"
+            direction="column"
+            justifyContent="space-around"
+            height={"100%"}
             // alignItems="stretch"
           >
-            <RightPanel />
+            {/* <Grid item maxHeight={"100vh"}> */}
+              <RightPanel />
+            {/* </Grid> */}
+            <Grid item>
+              <Typography variant="h4" textAlign={"center"}>
+                v20240417 by ctchu@HKNEAC 
+              </Typography>
+            </Grid>
           </Grid>
         </Grid>
       </div>
