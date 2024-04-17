@@ -45,7 +45,7 @@ export default function Home() {
 
   const [rotateDeg, setRotateDeg] = useState(0)
 
-  const months = ["1月 JAN", "2月 Feb", "3月 Mar", "4月 Apr", "5月 May", "6月 Jun", "7月 Jul", "8月 Aug", "9月 Sep", "10月 Oct", "11月 Nov", "12月 Dec"]
+  const months = ["1月 Jan", "2月 Feb", "3月 Mar", "4月 Apr", "5月 May", "6月 Jun", "7月 Jul", "8月 Aug", "9月 Sep", "10月 Oct", "11月 Nov", "12月 Dec"]
   const monthOffsetValues = [0, 30.49, 58.11, 88.65, 118.33, 148.86, 178.52, 209.04, 239.64, 269.15, 299.78, 329.37]
   const dayDeg = 0.98
   const days31 = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"]
@@ -103,14 +103,11 @@ export default function Home() {
   }
 
   const [month, setMonth] = useState(months[0])
-  const [inputMonth, setInputMonth] = useState('')
   const [days, setDays] = useState(days31)
   const [day, setDay] = useState(days[0])
-  const [inputDay, setInputDay] = useState('')
   const [time, setTime] = useState(times[24])
-  const [inputTime, setInputTime] = useState('')
-  const [rotating, setRotating] = useState(false)
   const [rotateStyle, setRotateStyle] = useState(1)
+  const [rotateGesure, setRotateGesture] = useState(false);
   // let root = document.documentElement.starchart
 
   // const rotate10deg = () => {
@@ -155,21 +152,6 @@ export default function Home() {
     console.log("rotate animation pressed")
     setRotateStyle("24s linear")
     setRotateDeg(rotateDeg - 360)
-    // console.log(rotating)
-    // let myVar = !rotating
-    // setRotating(myVar)
-    // console.log(rotating)
-    // if (rotating) {
-    //   console.log("start rotating")
-    //   setRotateStyle("20s linear")
-    //   setRotateDeg(-360)
-    // setRotateStyle(0)
-    // setRotateDeg(0)
-    // setrotateStyle(1)
-    // setRotating(!rotating)
-    // } else {
-    //   setRotateStyle("1s ease-in-out")
-    // }
   }
 
   const RightPanel = () => {
