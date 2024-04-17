@@ -27,8 +27,19 @@ const darkTheme = createTheme({
 
 darkTheme.typography.h1 = {
   fontSize: "1.5rem",
-  '@media (max-height:700px)': {
+  '@media (max-height:650px)': {
     fontSize: '1rem',
+  },
+  '@media (min-height:800px)': {
+    fontSize: '2rem',
+  },
+  fontFamily: "NotoSansTC",
+}
+
+darkTheme.typography.h3 = {
+  fontSize: "1rem",
+  '@media (max-height:700px)': {
+    fontSize: '0.8rem',
   },
   fontFamily: "NotoSansTC",
 }
@@ -36,7 +47,7 @@ darkTheme.typography.h1 = {
 darkTheme.typography.h4 = {
   fontSize: "0.8rem",
   '@media (max-height:700px)': {
-    fontSize: '0.6rem',
+    fontSize: '0.4rem',
   },
   fontFamily: "NotoSansTC",
 }
@@ -177,7 +188,7 @@ export default function Home() {
         </Typography>
         <br /> <br />
         <Divider sx={{paddingTop: "3vh", paddingBottom: "1vh"}} orientation="horizontal" flexItem>
-          Go to Time
+          <Typography variant="h3">Go to Time</Typography>
         </Divider>
         <br />
           <Autocomplete
@@ -224,12 +235,13 @@ export default function Home() {
         <Button
           variant="contained"
           onClick={rotateToTime}
+          style={{backgroundColor: "#bf616a"}}
         >
-          GO
+          <Typography variant="h3">GO</Typography>
         </Button>
         <br /> <br />
         <Divider sx={{paddingTop: "3vh", paddingBottom: "1vh"}} orientation="horizontal" flexItem>
-          Animation
+          <Typography variant="h3">Animation</Typography>
         </Divider>
         <item>
           {/* <Button
@@ -248,9 +260,12 @@ export default function Home() {
           <Button
             variant="contained"
             onClick={rotateAnimation}
-            style={{ textTransform: "none"}}
+            style={{
+              textTransform: "none",
+              backgroundColor: "#bf616a"
+            }}
           >
-            3600x Real Speed
+            <Typography variant="h3">3600x Real Speed</Typography>
           </Button>
         </item>
       </Grid>
@@ -298,7 +313,7 @@ export default function Home() {
               <RightPanel />
             {/* </Grid> */}
             <Grid item>
-              <Typography variant="h4" textAlign={"center"}>
+              <Typography variant="h4" textAlign={"center"} color="#4c566a">
                 v20240417 by ctchu@HKNEAC 
               </Typography>
             </Grid>
