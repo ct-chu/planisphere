@@ -86,6 +86,8 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_BASE_PATH: /planisphere
     needs: build
     steps:
       - name: Deploy to GitHub Pages

@@ -17,6 +17,8 @@ import React, { useState, useEffect } from 'react';
 import { TransformWrapper, TransformComponent, useControls } from "react-zoom-pan-pinch";
 import { useOrientation } from "react-use";
 
+import { prefix } from './prefix.js';
+
 const yellowStarchart = `${prefix}/STARMAPv2022_yellow_3600x.png`
 const orangeStarchart = `${prefix}/STARMAPv2022_orange_3600x.png`
 const redStarchart = `${prefix}/STARMAPv2022_red_3600x.png`
@@ -35,7 +37,7 @@ const darkTheme = createTheme({
   },
   typography: {
     fontFamily: [
-      "NotoSansTC",
+      "Noto Sans TC",
       'sans-serif',
     ].join(','),
   },
