@@ -5,14 +5,14 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import { Typography, TextField, Autocomplete, Button, Divider, Stack } from '@mui/material';
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+// import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+// import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
 import ZoomOutIcon from '@mui/icons-material/ZoomOut';
 import ZoomOutMapIcon from '@mui/icons-material/ZoomOutMap';
 import React, { useState, useEffect } from 'react';
 import { TransformWrapper, TransformComponent, useControls } from "react-zoom-pan-pinch";
-// import NotoSansTC from "/NotoSansTC-VariableFont_wght.ttf"
+import { Star } from '@mui/icons-material';
 
 const yellowStarchart = "/STARMAPv2022_yellow_3600x.png"
 const jacket = "/STARMAPv2022_jacket_3600px.png"
@@ -179,6 +179,40 @@ export default function Home() {
     setRotateDeg(rotateDeg - 360)
   }
 
+  const StarchartComponent = () => {
+    return (
+      <Grid
+        xs={6}
+        className={"no-select"}
+        sx={{
+          height: "95vh",
+          width: "95vh"
+        }}
+        style={{ position: "relative" }}
+      >
+
+        <TransformComponent
+          wrapperStyle={{
+            width: "100%",
+            height: "100%",
+          }}
+          contentStyle={{
+            width: "100%",
+            height: "100%"
+          }}
+        >
+          <div className={styles.starchart}>
+            <img height="100%" style={{ transition: rotateStyle, rotate: `${rotateDeg}deg` }} src={yellowStarchart} />
+            <div className={styles.overlay}>
+              <img height="100%" width="100%" src={jacket} />
+            </div>
+          </div>
+        </TransformComponent>
+
+      </Grid>
+    )
+  }
+
   const RightPanel = () => {
     return (
       <Grid container
@@ -290,7 +324,7 @@ export default function Home() {
         <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
           <Typography variant="h3">Zoom</Typography>
         </Divider>
-        <ZoomControls/>
+        <ZoomControls />
       </Grid>
     )
   }
@@ -363,66 +397,35 @@ export default function Home() {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <div className={styles.container} maxWidth={false}>
-      <TransformWrapper
-        wheel={{disabled:true}}
-        disablePadding={true}
-      >
-        <Grid container
-          direction="row"
-          spacing={2}
-          sx={{
-            height: "100vh",
-            width: "100%",
-          }}
-          alignItems="center"
-          justifyContent="space-evenly"
+        <TransformWrapper
+          wheel={{ disabled: true }}
+          disablePadding={true}
         >
-          <Grid
-            xs={6}
-            className={"no-select"}
-            sx={{
-              height: "95vh",
-              width: "95vh"
-            }}
-            style={{ position: "relative" }}
-          >
-            
-              <TransformComponent
-                wrapperStyle={{
-                  width: "100%",
-                  height: "100%",
-                }}
-                contentStyle={{
-                  width: "100%",
-                  height: "100%"
-                }}
-              >
-                <div className={styles.starchart}>
-                  <img height="100%" style={{ transition: rotateStyle, rotate: `${rotateDeg}deg` }} src={yellowStarchart} />
-                  <div className={styles.overlay}>
-                    <img height="100%" width="100%" src={jacket} />
-                  </div>
-                </div>
-              </TransformComponent>
-            
-          </Grid>
           <Grid container
-            xs={3}
-            direction="column"
-            justifyContent="space-around"
-            height={"100%"}
-          // alignItems="stretch"
+            direction="row"
+            spacing={2}
+            sx={{
+              height: "100vh",
+              width: "100%",
+            }}
+            alignItems="center"
+            justifyContent="space-evenly"
           >
-            {/* <Grid item maxHeight={"100vh"}> */}
-            <RightPanel />
-            {/* </Grid> */}
-            <Grid item>
-              <Typography variant="h4" textAlign={"center"} color="#4c566a">
-                v20240417 by ctchu@HKNEAC
-              </Typography>
+            <StarchartComponent />
+            <Grid container
+              xs={3}
+              direction="column"
+              justifyContent="space-around"
+              height={"100%"}
+            >
+              <RightPanel />
+              <Grid item>
+                <Typography variant="h4" textAlign={"center"} color="#4c566a">
+                  v20240417 by ctchu@HKNEAC
+                </Typography>
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
         </TransformWrapper>
       </div>
     </ThemeProvider>
