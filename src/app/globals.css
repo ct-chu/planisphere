@@ -115,7 +115,7 @@ img {
 
 @font-face {
   font-family: "NotoSansTC";
-  src: url("./NotoSansTC-VariableFont_wght.ttf") format("truetype");
+  src: url("/NotoSansTC-VariableFont_wght.ttf") format("truetype");
   font-style: normal;
 }
 
