@@ -3,7 +3,8 @@ const isProd = process.env.NODE_ENV === 'production'
 
 const nextConfig = {
     output: 'export',
-    assetPrefix: isProd ? 'https://ct-chu.github.io/planisphere/' : undefined,
+    assetPrefix: "https://ct-chu.github.io/planisphere/",
+    basePath: "https://ct-chu.github.io/planisphere/"
 };
 
 export default nextConfig;
