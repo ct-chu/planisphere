@@ -226,11 +226,9 @@ export default function Home() {
         <Typography variant="h1">
           Interactive Planisphere<br />互動旋轉星圖
         </Typography>
-        <br /> <br />
         <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
           <Typography variant="h3">Choose Starchart</Typography>
         </Divider>
-        <br />
         <ToggleButtonGroup
           color="secondary"
           value={showingStarchart}
@@ -247,15 +245,13 @@ export default function Home() {
             maxHeight: "2.5rem",
           }}
         >
-          <ToggleButton value={1}>西方星座</ToggleButton>
-          <ToggleButton value={2}>市區星空</ToggleButton>
-          <ToggleButton value={3}>中國星座</ToggleButton>
+          <ToggleButton value={1}>西方</ToggleButton>
+          <ToggleButton value={2}>市區</ToggleButton>
+          <ToggleButton value={3}>中國</ToggleButton>
         </ToggleButtonGroup>
-        <br />
         <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
           <Typography variant="h3">Go to Time</Typography>
         </Divider>
-        <br />
         <Autocomplete
           size="small"
           disablePortal
@@ -269,7 +265,6 @@ export default function Home() {
           sx={{ width: 155, paddingBottom: "1vh" }}
           renderInput={(params) => <TextField {...params} label="月 Month" />}
         />
-        <br />
         <Autocomplete
           size="small"
           disablePortal
@@ -282,7 +277,6 @@ export default function Home() {
           sx={{ width: 155, paddingBottom: "1vh" }}
           renderInput={(params) => <TextField {...params} label="日 Day" />}
         />
-        <br />
         <Autocomplete
           size="small"
           disablePortal
@@ -295,7 +289,6 @@ export default function Home() {
           sx={{ width: 155, paddingBottom: "1vh" }}
           renderInput={(displayTime) => <TextField {...displayTime} label="時 Time" />}
         />
-        <br />
         <Button
           variant="contained"
           onClick={rotateToTime}
@@ -313,7 +306,6 @@ export default function Home() {
         >
           <Typography variant="h3">GO</Typography>
         </Button>
-        <br />
         <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
           <Typography variant="h3">Animation</Typography>
         </Divider>
@@ -346,7 +338,6 @@ export default function Home() {
             <Typography variant="h3">3600x Real Speed</Typography>
           </Button>
         </item>
-        <br />
         <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
           <Typography variant="h3">Zoom</Typography>
         </Divider>
