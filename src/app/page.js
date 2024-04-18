@@ -7,6 +7,9 @@ import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import { Typography, TextField, Autocomplete, Button, Divider, Stack } from '@mui/material';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import ZoomInIcon from '@mui/icons-material/ZoomIn';
+import ZoomOutIcon from '@mui/icons-material/ZoomOut';
+import ZoomOutMapIcon from '@mui/icons-material/ZoomOutMap';
 import React, { useState, useEffect } from 'react';
 import { TransformWrapper, TransformComponent, useControls } from "react-zoom-pan-pinch";
 // import NotoSansTC from "/NotoSansTC-VariableFont_wght.ttf"
@@ -269,14 +272,66 @@ export default function Home() {
             <Typography variant="h3">3600x Real Speed</Typography>
           </Button>
         </item>
+        <br /> <br />
+        <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
+          <Typography variant="h3">Zoom</Typography>
+        </Divider>
+        <ZoomControls/>
       </Grid>
     )
   }
+
+  const ZoomControls = () => {
+    const { zoomIn, zoomOut, resetTransform } = useControls();
+    return (
+      <Grid container
+        direction="row"
+      >
+        <Button
+          variant="contained"
+          size="small"
+          style={{
+            textTransform: "none",
+            backgroundColor: "#bf616a",
+            marginRight: "0.3rem"
+          }}
+          onClick={() => zoomIn()}
+        >
+          <ZoomInIcon />
+        </Button>
+        <Button
+          variant="contained"
+          style={{
+            textTransform: "none",
+            backgroundColor: "#bf616a",
+            marginRight: "0.3rem"
+          }}
+          onClick={() => zoomOut()}
+        >
+          <ZoomOutIcon />
+        </Button>
+        <Button
+          variant="contained"
+          style={{
+            textTransform: "none",
+            backgroundColor: "#bf616a"
+          }}
+          onClick={() => resetTransform()}
+        >
+          <ZoomOutMapIcon />
+        </Button>
+      </Grid>
+    );
+  };
 
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <div className={styles.container} maxWidth={false}>
+      <TransformWrapper
+        wheel={{disabled:true}}
+        disablePadding={true}
+      >
         <Grid container
           direction="row"
           spacing={2}
@@ -296,9 +351,7 @@ export default function Home() {
             }}
             style={{ position: "relative" }}
           >
-            <TransformWrapper
-              wheel={{disabled:true}}
-            >
+            
               <TransformComponent
                 wrapperStyle={{
                   width: "100%",
@@ -316,7 +369,7 @@ export default function Home() {
                   </div>
                 </div>
               </TransformComponent>
-            </TransformWrapper>
+            
           </Grid>
           <Grid container
             xs={3}
@@ -335,6 +388,7 @@ export default function Home() {
             </Grid>
           </Grid>
         </Grid>
+        </TransformWrapper>
       </div>
     </ThemeProvider>
   );
