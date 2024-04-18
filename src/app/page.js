@@ -17,11 +17,11 @@ import React, { useState, useEffect } from 'react';
 import { TransformWrapper, TransformComponent, useControls } from "react-zoom-pan-pinch";
 import { useOrientation } from "react-use";
 
-const yellowStarchart = "/STARMAPv2022_yellow_3600x.png"
-const orangeStarchart = "/STARMAPv2022_orange_3600x.png"
-const redStarchart = "/STARMAPv2022_red_3600x.png"
-const jacket = "/STARMAPv2022_jacket_3600px.png"
-const landscapeGIF = "/landscape.gif"
+const yellowStarchart = "./STARMAPv2022_yellow_3600x.png"
+const orangeStarchart = "./STARMAPv2022_orange_3600x.png"
+const redStarchart = "./STARMAPv2022_red_3600x.png"
+const jacket = "./STARMAPv2022_jacket_3600px.png"
+const landscapeGIF = "./landscape.gif"
 
 const darkTheme = createTheme({
   palette: {
