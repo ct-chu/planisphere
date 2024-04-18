@@ -118,3 +118,8 @@ img {
   src: url("/NotoSansTC-VariableFont_wght.ttf") format("truetype");
   font-style: normal;
 }
+
+.MuiBackdrop-root {
+  background-color: rgba(0,0,0,1);
+  opacity: 1;
+}

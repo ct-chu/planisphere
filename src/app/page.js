@@ -4,7 +4,7 @@ import styles from './page.module.css'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
-import { Typography, TextField, Autocomplete, Button, Divider, ToggleButton, ToggleButtonGroup } from '@mui/material';
+import { Typography, TextField, Autocomplete, Button, Divider, ToggleButton, ToggleButtonGroup, Backdrop } from '@mui/material';
 
 // import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 // import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
@@ -15,11 +15,13 @@ import SettingsIcon from '@mui/icons-material/Settings';
 
 import React, { useState, useEffect } from 'react';
 import { TransformWrapper, TransformComponent, useControls } from "react-zoom-pan-pinch";
+import { useOrientation } from "react-use";
 
 const yellowStarchart = "/STARMAPv2022_yellow_3600x.png"
 const orangeStarchart = "/STARMAPv2022_orange_3600x.png"
 const redStarchart = "/STARMAPv2022_red_3600x.png"
 const jacket = "/STARMAPv2022_jacket_3600px.png"
+const landscapeGIF = "/landscape.gif"
 
 const darkTheme = createTheme({
   palette: {
@@ -67,8 +69,6 @@ darkTheme.typography.h4 = {
 }
 
 export default function Home() {
-
-  const [rotateDeg, setRotateDeg] = useState(0)
 
   const months = ["1月 Jan", "2月 Feb", "3月 Mar", "4月 Apr", "5月 May", "6月 Jun", "7月 Jul", "8月 Aug", "9月 Sep", "10月 Oct", "11月 Nov", "12月 Dec"]
   const monthOffsetValues = [0, 30.49, 58.11, 88.65, 118.33, 148.86, 178.52, 209.04, 239.64, 269.15, 299.78, 329.37]
@@ -127,6 +127,7 @@ export default function Home() {
     "6:00 AM": -89.4,
   }
 
+  const [rotateDeg, setRotateDeg] = useState(0)
   const [showingStarchart, setShowingStarchart] = useState(1)
   const [opacity, setOpacity] = useState([1, 0, 0])
   const [month, setMonth] = useState(months[0])
@@ -134,6 +135,8 @@ export default function Home() {
   const [day, setDay] = useState(days[0])
   const [time, setTime] = useState(times[24])
   const [rotateStyle, setRotateStyle] = useState("1s ease-in-out, opacity .15s ease-in-out")
+  const screen = useOrientation();
+  const [landscapeReminder, setLandscapeReminder] = useState(false)
 
   // const rotate10deg = () => {
   //   setRotateDeg(rotateDeg + 10)
@@ -155,6 +158,12 @@ export default function Home() {
       element.style.userSelect = "none";
     });
   }, []);
+
+  useEffect(() => {
+    
+    (screen.type === "portrait-primary") || (screen.type === "portrait-secondary") ? setLandscapeReminder(true) : setLandscapeReminder(false)
+    console.log(screen.type)
+  }, [screen])
 
   const setDaysInMonth = (month) => {
     let dayInM = days31
@@ -413,6 +422,28 @@ export default function Home() {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
+      <Backdrop
+        sx={{
+          zIndex: (theme) => theme.zIndex.drawer + 1
+        }}
+        open={landscapeReminder}
+      >
+        <Grid container
+          direction="row"
+          alignContent="center"
+          justifyContent="center"
+        >
+          <img src={landscapeGIF}/>
+          <Typography
+            variant="h3"
+            align="center"
+          >
+            Please rotate your device to landscape mode.
+            <br />
+            請將你的裝置轉為橫向。
+          </Typography>
+        </Grid>
+      </Backdrop>
       <div className={styles.container} maxWidth={false}>
         <TransformWrapper
           wheel={{ disabled: true }}
