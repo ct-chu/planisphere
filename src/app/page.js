@@ -4,22 +4,32 @@ import styles from './page.module.css'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
-import { Typography, TextField, Autocomplete, Button, Divider, Stack } from '@mui/material';
+import { Typography, TextField, Autocomplete, Button, Divider, ToggleButton, ToggleButtonGroup } from '@mui/material';
+
 // import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 // import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
 import ZoomOutIcon from '@mui/icons-material/ZoomOut';
 import ZoomOutMapIcon from '@mui/icons-material/ZoomOutMap';
+import SettingsIcon from '@mui/icons-material/Settings';
+
 import React, { useState, useEffect } from 'react';
 import { TransformWrapper, TransformComponent, useControls } from "react-zoom-pan-pinch";
-import { Star } from '@mui/icons-material';
 
 const yellowStarchart = "/STARMAPv2022_yellow_3600x.png"
+const orangeStarchart = "/STARMAPv2022_orange_3600x.png"
+const redStarchart = "/STARMAPv2022_red_3600x.png"
 const jacket = "/STARMAPv2022_jacket_3600px.png"
 
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
+    secondary: {
+      light: '#ff7961',
+      main: '#bf616a',
+      dark: '#ba000d',
+      contrastText: '#000',
+    },
   },
   typography: {
     fontFamily: [
@@ -117,12 +127,13 @@ export default function Home() {
     "6:00 AM": -89.4,
   }
 
+  const [showingStarchart, setShowingStarchart] = useState(1)
+  const [opacity, setOpacity] = useState([1, 0, 0])
   const [month, setMonth] = useState(months[0])
   const [days, setDays] = useState(days31)
   const [day, setDay] = useState(days[0])
   const [time, setTime] = useState(times[24])
-  const [rotateStyle, setRotateStyle] = useState(1)
-  // let root = document.documentElement.starchart
+  const [rotateStyle, setRotateStyle] = useState("1s ease-in-out, opacity .15s ease-in-out")
 
   // const rotate10deg = () => {
   //   setRotateDeg(rotateDeg + 10)
@@ -169,48 +180,30 @@ export default function Home() {
     let selectedDayOffset = -1 * (Number(day) - 1) * dayDeg
     let selectedTimeOffset = timeOffsetValues[time]
     let totalOffset = selectedMonthOffset + selectedDayOffset + selectedTimeOffset
-    setRotateStyle(Math.sqrt(Math.abs(closestOrigin + totalOffset - rotateDeg)) / 15 + "s ease-in-out")
+    setRotateStyle(Math.sqrt(Math.abs(closestOrigin + totalOffset - rotateDeg)) / 15 + "s ease-in-out, opacity .15s ease-in-out")
     setRotateDeg(closestOrigin + totalOffset)
   }
 
   const rotateAnimation = () => {
     console.log("rotate animation pressed")
-    setRotateStyle("24s linear")
+    setRotateStyle("24s linear, opacity .15s ease-in-out")
     setRotateDeg(rotateDeg - 360)
   }
 
-  const StarchartComponent = () => {
-    return (
-      <Grid
-        xs={6}
-        className={"no-select"}
-        sx={{
-          height: "95vh",
-          width: "95vh"
-        }}
-        style={{ position: "relative" }}
-      >
-
-        <TransformComponent
-          wrapperStyle={{
-            width: "100%",
-            height: "100%",
-          }}
-          contentStyle={{
-            width: "100%",
-            height: "100%"
-          }}
-        >
-          <div className={styles.starchart}>
-            <img height="100%" style={{ transition: rotateStyle, rotate: `${rotateDeg}deg` }} src={yellowStarchart} />
-            <div className={styles.overlay}>
-              <img height="100%" width="100%" src={jacket} />
-            </div>
-          </div>
-        </TransformComponent>
-
-      </Grid>
-    )
+  const starchartChange = (event, newStarchart) => {
+    if (newStarchart == 1) {
+      setOpacity([1, 0, 0])
+      setShowingStarchart(newStarchart)
+    } else if (newStarchart == 2) {
+      setOpacity([0, 1, 0])
+      setShowingStarchart(newStarchart)
+    } else if (newStarchart == 3) {
+      setOpacity([0, 0, 1])
+      setShowingStarchart(newStarchart)
+    } else {
+      setOpacity([1, 0, 0])
+      setShowingStarchart(1)
+    }
   }
 
   const RightPanel = () => {
@@ -225,6 +218,31 @@ export default function Home() {
           Interactive Planisphere<br />互動旋轉星圖
         </Typography>
         <br /> <br />
+        <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
+          <Typography variant="h3">Choose Starchart</Typography>
+        </Divider>
+        <br />
+        <ToggleButtonGroup
+          color="secondary"
+          value={showingStarchart}
+          exclusive
+          onChange={starchartChange}
+          aria-label="Platform"
+          style={{
+            paddingLeft: 10,
+            paddingRight: 10,
+            paddingTop: 3,
+            paddingBottom: 3,
+            minWidth: 0,
+            minHeight: 0,
+            maxHeight: "2.5rem",
+          }}
+        >
+          <ToggleButton value={1}>西方星座</ToggleButton>
+          <ToggleButton value={2}>市區星空</ToggleButton>
+          <ToggleButton value={3}>中國星座</ToggleButton>
+        </ToggleButtonGroup>
+        <br />
         <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
           <Typography variant="h3">Go to Time</Typography>
         </Divider>
@@ -268,7 +286,6 @@ export default function Home() {
           sx={{ width: 155, paddingBottom: "1vh" }}
           renderInput={(displayTime) => <TextField {...displayTime} label="時 Time" />}
         />
-
         <br />
         <Button
           variant="contained"
@@ -287,7 +304,7 @@ export default function Home() {
         >
           <Typography variant="h3">GO</Typography>
         </Button>
-        <br /> <br />
+        <br />
         <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
           <Typography variant="h3">Animation</Typography>
         </Divider>
@@ -320,7 +337,7 @@ export default function Home() {
             <Typography variant="h3">3600x Real Speed</Typography>
           </Button>
         </item>
-        <br /> <br />
+        <br />
         <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
           <Typography variant="h3">Zoom</Typography>
         </Divider>
@@ -411,7 +428,36 @@ export default function Home() {
             alignItems="center"
             justifyContent="space-evenly"
           >
-            <StarchartComponent />
+            <Grid
+              xs={6}
+              className={"no-select"}
+              sx={{
+                height: "95vh",
+                width: "95vh"
+              }}
+              style={{ position: "relative" }}
+            >
+
+              <TransformComponent
+                wrapperStyle={{
+                  width: "100%",
+                  height: "100%",
+                }}
+                contentStyle={{
+                  width: "100%",
+                  height: "100%"
+                }}
+              >
+                <div className={styles.starchart}>
+                  <img className={styles.imgStartchart} height="100%" style={{ transition: rotateStyle, rotate: `${rotateDeg}deg`, position: "absolute", opacity: `${opacity[0]}` }} src={yellowStarchart} />
+                  <img className={styles.imgStartchart} height="100%" style={{ transition: rotateStyle, rotate: `${rotateDeg}deg`, position: "absolute", opacity: `${opacity[1]}` }} src={orangeStarchart} />
+                  <img className={styles.imgStartchart} height="100%" style={{ transition: rotateStyle, rotate: `${rotateDeg}deg`, position: "absolute", opacity: `${opacity[2]}` }} src={redStarchart} />
+                  <div className={styles.overlay}>
+                    <img height="100%" width="100%" src={jacket} />
+                  </div>
+                </div>
+              </TransformComponent>
+            </Grid>
             <Grid container
               xs={3}
               direction="column"
@@ -419,7 +465,7 @@ export default function Home() {
               height={"100%"}
             >
               <RightPanel />
-              <Grid item>
+              <Grid>
                 <Typography variant="h4" textAlign={"center"} color="#4c566a">
                   v20240417 by ctchu@HKNEAC
                 </Typography>
