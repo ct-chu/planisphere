@@ -43,7 +43,7 @@ darkTheme.typography.h1 = {
 darkTheme.typography.h3 = {
   fontSize: "1rem",
   '@media (max-height:700px)': {
-    fontSize: '0.8rem',
+    fontSize: '0.6rem',
   },
   fontFamily: "NotoSansTC",
 }
@@ -188,7 +188,7 @@ export default function Home() {
         spacing={1}
       >
         <Typography variant="h1">
-          Interactive<br />Planisphere<br />互動旋轉星圖
+          Interactive Planisphere<br />互動旋轉星圖
         </Typography>
         <br /> <br />
         <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
@@ -239,7 +239,17 @@ export default function Home() {
         <Button
           variant="contained"
           onClick={rotateToTime}
-          style={{ backgroundColor: "#bf616a" }}
+          style={{
+            backgroundColor: "#bf616a",
+            paddingLeft: 10,
+            paddingRight: 10,
+            paddingTop: 3,
+            paddingBottom: 3,
+            maxWidth: "3rem",
+            minWidth: 0,
+            minHeight: 0,
+            marginRight: "0.3rem",
+          }}
         >
           <Typography variant="h3">GO</Typography>
         </Button>
@@ -266,7 +276,11 @@ export default function Home() {
             onClick={rotateAnimation}
             style={{
               textTransform: "none",
-              backgroundColor: "#bf616a"
+              backgroundColor: "#bf616a",
+              paddingLeft: 10,
+              paddingRight: 10,
+              paddingTop: 3,
+              paddingBottom: 3,
             }}
           >
             <Typography variant="h3">3600x Real Speed</Typography>
@@ -293,7 +307,14 @@ export default function Home() {
           style={{
             textTransform: "none",
             backgroundColor: "#bf616a",
-            marginRight: "0.3rem"
+            paddingLeft: 10,
+            paddingRight: 10,
+            paddingTop: 3,
+            paddingBottom: 3,
+            maxWidth: "3rem",
+            minWidth: 0,
+            minHeight: 0,
+            marginRight: "0.3rem",
           }}
           onClick={() => zoomIn()}
         >
@@ -304,6 +325,13 @@ export default function Home() {
           style={{
             textTransform: "none",
             backgroundColor: "#bf616a",
+            paddingLeft: 10,
+            paddingRight: 10,
+            paddingTop: 3,
+            paddingBottom: 3,
+            maxWidth: "3rem",
+            minWidth: 0,
+            minHeight: 0,
             marginRight: "0.3rem"
           }}
           onClick={() => zoomOut()}
@@ -314,7 +342,14 @@ export default function Home() {
           variant="contained"
           style={{
             textTransform: "none",
-            backgroundColor: "#bf616a"
+            backgroundColor: "#bf616a",
+            paddingLeft: 10,
+            paddingRight: 10,
+            paddingTop: 3,
+            paddingBottom: 3,
+            maxWidth: "3rem",
+            minWidth: 0,
+            minHeight: 0,
           }}
           onClick={() => resetTransform()}
         >
