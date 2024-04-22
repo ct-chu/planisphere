@@ -51,7 +51,7 @@ darkTheme.typography.h1 = {
   '@media (min-height:800px)': {
     fontSize: '2rem',
   },
-  fontFamily: "NotoSansTC",
+  fontFamily: "Noto Sans TC",
 }
 
 darkTheme.typography.h3 = {
@@ -59,7 +59,7 @@ darkTheme.typography.h3 = {
   '@media (max-height:700px)': {
     fontSize: '0.6rem',
   },
-  fontFamily: "NotoSansTC",
+  fontFamily: "Noto Sans TC",
 }
 
 darkTheme.typography.h4 = {
@@ -67,7 +67,7 @@ darkTheme.typography.h4 = {
   '@media (max-height:700px)': {
     fontSize: '0.4rem',
   },
-  fontFamily: "NotoSansTC",
+  fontFamily: "Noto Sans TC",
 }
 
 export default function Home() {
