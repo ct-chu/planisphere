@@ -16,6 +16,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import React, { useState, useEffect } from 'react';
 import { TransformWrapper, TransformComponent, useControls } from "react-zoom-pan-pinch";
 import { useOrientation } from "react-use";
+import LazyLoad from 'react-lazyload';
 
 import { prefix } from './prefix.js';
 
@@ -474,8 +475,12 @@ export default function Home() {
               >
                 <div className={styles.starchart}>
                   <img className={styles.imgStartchart} height="100%" style={{ transition: rotateStyle, rotate: `${rotateDeg}deg`, position: "absolute", opacity: `${opacity[0]}` }} src={yellowStarchart} />
-                  <img className={styles.imgStartchart} height="100%" style={{ transition: rotateStyle, rotate: `${rotateDeg}deg`, position: "absolute", opacity: `${opacity[1]}` }} src={orangeStarchart} />
-                  <img className={styles.imgStartchart} height="100%" style={{ transition: rotateStyle, rotate: `${rotateDeg}deg`, position: "absolute", opacity: `${opacity[2]}` }} src={redStarchart} />
+                  <LazyLoad>
+                    <img className={styles.imgStartchart} height="100%" style={{ transition: rotateStyle, rotate: `${rotateDeg}deg`, position: "absolute", opacity: `${opacity[1]}` }} src={orangeStarchart} />
+                  </LazyLoad>
+                  <LazyLoad>
+                    <img className={styles.imgStartchart} height="100%" style={{ transition: rotateStyle, rotate: `${rotateDeg}deg`, position: "absolute", opacity: `${opacity[2]}` }} src={redStarchart} />
+                  </LazyLoad>
                   <div className={styles.overlay}>
                     <img height="100%" width="100%" src={jacket} />
                   </div>
