@@ -20,9 +20,6 @@ import LazyLoad from 'react-lazyload';
 
 import { prefix } from './prefix.js';
 
-const yellowStarchart = `${prefix}/STARMAPv2022_yellow_3600x.png`
-const orangeStarchart = `${prefix}/STARMAPv2022_orange_3600x.png`
-const redStarchart = `${prefix}/STARMAPv2022_red_3600x.png`
 const jacket = `${prefix}/STARMAPv2022_jacket_3600px.png`
 const landscapeGIF = `${prefix}/landscape.gif`
 
@@ -140,6 +137,11 @@ export default function Home() {
   const [rotateStyle, setRotateStyle] = useState("1s ease-in-out, opacity .15s ease-in-out")
   const screen = useOrientation();
   const [landscapeReminder, setLandscapeReminder] = useState(false)
+  const [language, setLanguage] = useState("hk")
+
+  const [yellowStarchart, setYellowStarchart] = useState(`${prefix}/STARMAPv2022_yellow_3600x.png`)
+  const [orangeStarchart, setOrangeStarchart] = useState(`${prefix}/STARMAPv2022_orange_3600x.png`)
+  const [redStarchart, setRedStarchart] = useState(`${prefix}/STARMAPv2022_red_3600x.png`)
 
   // const rotate10deg = () => {
   //   setRotateDeg(rotateDeg + 10)
@@ -215,6 +217,23 @@ export default function Home() {
     } else {
       setOpacity([1, 0, 0])
       setShowingStarchart(1)
+    }
+  }
+
+  const languageChange = (event, newLanguage) => {
+    setLanguage(newLanguage)
+    if (newLanguage == "hk") {
+      setYellowStarchart(`${prefix}/STARMAPv2022_yellow_3600x.png`)
+      setOrangeStarchart(`${prefix}/STARMAPv2022_orange_3600x.png`)
+      setRedStarchart(`${prefix}/STARMAPv2022_red_3600x.png`)
+    } else if (newLanguage == "en") {
+      setYellowStarchart(`${prefix}/STARMAPv2022_yellow_eng_3600x.png`)
+      setOrangeStarchart(`${prefix}/STARMAPv2022_orange_eng_3600x.png`)
+      setRedStarchart(`${prefix}/STARMAPv2022_red_eng_3600x.png`)
+    } else {
+      setYellowStarchart(`${prefix}/STARMAPv2022_yellow_3600x.png`)
+      setOrangeStarchart(`${prefix}/STARMAPv2022_orange_3600x.png`)
+      setRedStarchart(`${prefix}/STARMAPv2022_red_3600x.png`)
     }
   }
 
@@ -345,6 +364,28 @@ export default function Home() {
           <Typography variant="h3">Zoom</Typography>
         </Divider>
         <ZoomControls />
+        <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
+          <Typography variant="h3">Language</Typography>
+        </Divider>
+        <ToggleButtonGroup
+          color="secondary"
+          value={language}
+          exclusive
+          onChange={languageChange}
+          aria-label="Platform"
+          style={{
+            paddingLeft: 10,
+            paddingRight: 10,
+            paddingTop: 3,
+            paddingBottom: 3,
+            minWidth: 0,
+            minHeight: 0,
+            maxHeight: "2.5rem",
+          }}
+        >
+          <ToggleButton value={"hk"} style={{textTransform: "none",}}>中文</ToggleButton>
+          <ToggleButton value={"en"} style={{textTransform: "none",}}>English</ToggleButton>
+        </ToggleButtonGroup>
       </Grid>
     )
   }
