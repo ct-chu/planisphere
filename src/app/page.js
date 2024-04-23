@@ -229,7 +229,7 @@ export default function Home() {
     } else if (newLanguage == "en") {
       setYellowStarchart(`${prefix}/STARMAPv2022_yellow_eng_3600x.png`)
       setOrangeStarchart(`${prefix}/STARMAPv2022_orange_eng_3600x.png`)
-      setRedStarchart(`${prefix}/STARMAPv2022_red_eng_3600x.png`)
+      setRedStarchart(`${prefix}/STARMAPv2022_red_eng.svg`)
     } else {
       setYellowStarchart(`${prefix}/STARMAPv2022_yellow_3600x.png`)
       setOrangeStarchart(`${prefix}/STARMAPv2022_orange_3600x.png`)
