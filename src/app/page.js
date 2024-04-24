@@ -20,7 +20,7 @@ import LazyLoad from 'react-lazyload';
 
 import { prefix } from './prefix.js';
 
-const jacket = `${prefix}/STARMAPv2022_jacket_3600px.png`
+const jacket = `${prefix}/STARMAPv2022_jacket.svg`
 const landscapeGIF = `${prefix}/landscape.gif`
 
 const darkTheme = createTheme({
@@ -139,9 +139,9 @@ export default function Home() {
   const [landscapeReminder, setLandscapeReminder] = useState(false)
   const [language, setLanguage] = useState("hk")
 
-  const [yellowStarchart, setYellowStarchart] = useState(`${prefix}/STARMAPv2022_yellow_3600x.png`)
-  const [orangeStarchart, setOrangeStarchart] = useState(`${prefix}/STARMAPv2022_orange_3600x.png`)
-  const [redStarchart, setRedStarchart] = useState(`${prefix}/STARMAPv2022_red_3600x.png`)
+  const [yellowStarchart, setYellowStarchart] = useState(`${prefix}/STARMAPv2022_yellow.svg`)
+  const [orangeStarchart, setOrangeStarchart] = useState(`${prefix}/STARMAPv2022_orange.svg`)
+  const [redStarchart, setRedStarchart] = useState(`${prefix}/STARMAPv2022_red.svg`)
 
   // const rotate10deg = () => {
   //   setRotateDeg(rotateDeg + 10)
@@ -223,17 +223,17 @@ export default function Home() {
   const languageChange = (event, newLanguage) => {
     setLanguage(newLanguage)
     if (newLanguage == "hk") {
-      setYellowStarchart(`${prefix}/STARMAPv2022_yellow_3600x.png`)
-      setOrangeStarchart(`${prefix}/STARMAPv2022_orange_3600x.png`)
-      setRedStarchart(`${prefix}/STARMAPv2022_red_3600x.png`)
+      setYellowStarchart(`${prefix}/STARMAPv2022_yellow.svg`)
+      setOrangeStarchart(`${prefix}/STARMAPv2022_orange.svg`)
+      setRedStarchart(`${prefix}/STARMAPv2022_red.svg`)
     } else if (newLanguage == "en") {
-      setYellowStarchart(`${prefix}/STARMAPv2022_yellow_eng_3600x.png`)
-      setOrangeStarchart(`${prefix}/STARMAPv2022_orange_eng_3600x.png`)
+      setYellowStarchart(`${prefix}/STARMAPv2022_yellow_eng.svg`)
+      setOrangeStarchart(`${prefix}/STARMAPv2022_orange_eng.svg`)
       setRedStarchart(`${prefix}/STARMAPv2022_red_eng.svg`)
     } else {
-      setYellowStarchart(`${prefix}/STARMAPv2022_yellow_3600x.png`)
-      setOrangeStarchart(`${prefix}/STARMAPv2022_orange_3600x.png`)
-      setRedStarchart(`${prefix}/STARMAPv2022_red_3600x.png`)
+      setYellowStarchart(`${prefix}/STARMAPv2022_yellow.svg`)
+      setOrangeStarchart(`${prefix}/STARMAPv2022_orange.svg`)
+      setRedStarchart(`${prefix}/STARMAPv2022_red.svg`)
     }
   }
 
