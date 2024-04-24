@@ -143,6 +143,37 @@ export default function Home() {
   const [orangeStarchart, setOrangeStarchart] = useState(`${prefix}/STARMAPv2022_orange.svg`)
   const [redStarchart, setRedStarchart] = useState(`${prefix}/STARMAPv2022_red.svg`)
 
+  const content = {
+    hk: {
+      title: "互動旋轉星圖",
+      chooseChart: "選擇星圖",
+      iauChart: "西方",
+      urbanChart: "市區",
+      cnChart: "中國",
+      gotoT: "前往時間",
+      month: "月",
+      day: "日",
+      time: "時",
+      rotation: "旋轉",
+      zoom: "縮放",
+    },
+    en: {
+      title: "Interactive Planisphere",
+      chooseChart: "Choose Starchart",
+      iauChart: "IAU",
+      urbanChart: "Urban",
+      cnChart: "Chinese",
+      gotoT: "Go to time...",
+      month: "Month",
+      day: "Day",
+      time: "Time",
+      rotation: "Rotation",
+      zoom: "Zoom",
+    }
+  }
+
+  const [displayContent, setDisplayContent] = useState(content.hk)
+
   // const rotate10deg = () => {
   //   setRotateDeg(rotateDeg + 10)
   //   console.log(rotateDeg)
@@ -226,14 +257,17 @@ export default function Home() {
       setYellowStarchart(`${prefix}/STARMAPv2022_yellow.svg`)
       setOrangeStarchart(`${prefix}/STARMAPv2022_orange.svg`)
       setRedStarchart(`${prefix}/STARMAPv2022_red.svg`)
+      setDisplayContent(content.hk)
     } else if (newLanguage == "en") {
       setYellowStarchart(`${prefix}/STARMAPv2022_yellow_eng.svg`)
       setOrangeStarchart(`${prefix}/STARMAPv2022_orange_eng.svg`)
       setRedStarchart(`${prefix}/STARMAPv2022_red_eng.svg`)
+      setDisplayContent(content.en)
     } else {
       setYellowStarchart(`${prefix}/STARMAPv2022_yellow.svg`)
       setOrangeStarchart(`${prefix}/STARMAPv2022_orange.svg`)
       setRedStarchart(`${prefix}/STARMAPv2022_red.svg`)
+      setDisplayContent(content.hk)
     }
   }
 
@@ -246,10 +280,10 @@ export default function Home() {
         spacing={1}
       >
         <Typography variant="h1">
-          Interactive Planisphere<br />互動旋轉星圖
+          {displayContent.title}
         </Typography>
         <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
-          <Typography variant="h3">Choose Starchart</Typography>
+          <Typography variant="h3">{displayContent.chooseChart}</Typography>
         </Divider>
         <ToggleButtonGroup
           color="secondary"
@@ -267,12 +301,12 @@ export default function Home() {
             maxHeight: "2.5rem",
           }}
         >
-          <ToggleButton value={1}>西方</ToggleButton>
-          <ToggleButton value={2}>市區</ToggleButton>
-          <ToggleButton value={3}>中國</ToggleButton>
+          <ToggleButton value={1} style={{textTransform: "none",}}>{displayContent.iauChart}</ToggleButton>
+          <ToggleButton value={2} style={{textTransform: "none",}}>{displayContent.urbanChart}</ToggleButton>
+          <ToggleButton value={3} style={{textTransform: "none",}}>{displayContent.cnChart}</ToggleButton>
         </ToggleButtonGroup>
         <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
-          <Typography variant="h3">Go to Time</Typography>
+          <Typography variant="h3">{displayContent.gotoT}</Typography>
         </Divider>
         <Autocomplete
           size="small"
@@ -285,7 +319,7 @@ export default function Home() {
             setDaysInMonth(newValue)
           }}
           sx={{ width: 155, paddingBottom: "1vh" }}
-          renderInput={(params) => <TextField {...params} label="月 Month" />}
+          renderInput={(params) => <TextField {...params} label={displayContent.month} />}
         />
         <Autocomplete
           size="small"
@@ -297,7 +331,7 @@ export default function Home() {
             setDay(newValue)
           }}
           sx={{ width: 155, paddingBottom: "1vh" }}
-          renderInput={(params) => <TextField {...params} label="日 Day" />}
+          renderInput={(params) => <TextField {...params} label={displayContent.day} />}
         />
         <Autocomplete
           size="small"
@@ -309,7 +343,7 @@ export default function Home() {
             setTime(newTime);
           }}
           sx={{ width: 155, paddingBottom: "1vh" }}
-          renderInput={(displayTime) => <TextField {...displayTime} label="時 Time" />}
+          renderInput={(displayTime) => <TextField {...displayTime} label={displayContent.time} />}
         />
         <Button
           variant="contained"
@@ -329,7 +363,7 @@ export default function Home() {
           <Typography variant="h3">GO</Typography>
         </Button>
         <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
-          <Typography variant="h3">Animation</Typography>
+          <Typography variant="h3">{displayContent.rotation}</Typography>
         </Divider>
         <item>
           {/* <Button
@@ -357,11 +391,11 @@ export default function Home() {
               paddingBottom: 3,
             }}
           >
-            <Typography variant="h3">3600x Real Speed</Typography>
+            <Typography variant="h3">3600x</Typography>
           </Button>
         </item>
         <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
-          <Typography variant="h3">Zoom</Typography>
+          <Typography variant="h3">{displayContent.zoom}</Typography>
         </Divider>
         <ZoomControls />
         <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
@@ -537,7 +571,7 @@ export default function Home() {
               <RightPanel />
               <Grid>
                 <Typography variant="h4" textAlign={"center"} color="#4c566a">
-                  v20240417 by ctchu@HKNEAC
+                  v20240424 by ctchu@HKNEAC
                 </Typography>
               </Grid>
             </Grid>
