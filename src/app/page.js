@@ -4,13 +4,14 @@ import styles from './page.module.css'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
-import { Typography, TextField, Autocomplete, Button, Divider, ToggleButton, ToggleButtonGroup, Backdrop } from '@mui/material';
+import { Typography, TextField, Autocomplete, Button, Divider, ToggleButton, ToggleButtonGroup, Backdrop, IconButton, Tooltip } from '@mui/material';
 
 // import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 // import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
 import ZoomOutIcon from '@mui/icons-material/ZoomOut';
 import ZoomOutMapIcon from '@mui/icons-material/ZoomOutMap';
+import HelpIcon from '@mui/icons-material/Help';
 import SettingsIcon from '@mui/icons-material/Settings';
 
 import React, { useState, useEffect } from 'react';
@@ -154,8 +155,11 @@ export default function Home() {
       month: "月",
       day: "日",
       time: "時",
-      rotation: "旋轉",
+      rotation: "旋轉一圈",
       zoom: "縮放",
+      speed: "速度：",
+      chartInfo: <div>西方：顯示國際天文聯會（IAU）的88星座和4等或更光的星星<br />市區：只顯示在市區星空可見，較光的IAU星座，星座圖案和幾何圖形<br />中國：顯示中國古代星官</div>,
+      rotationInfo: "模擬星空在24小時內的移動：以現實的3600倍速將星圖旋轉一圈，即不是以24小時，而是以24秒旋轉一圈",
     },
     en: {
       title: "Interactive Planisphere",
@@ -167,8 +171,11 @@ export default function Home() {
       month: "Month",
       day: "Day",
       time: "Time",
-      rotation: "Rotation",
+      rotation: "1 Full Rotation",
       zoom: "Zoom",
+      speed: "Speed:",
+      chartInfo: <div>IAU: shows the 88 IAU constellations with stars up to magnitude of 4<br />Urban: shows IAU constellations but only those with brighter stars visible in urban night skies, constellation art, and asterisms<br />Chinese: shows ancient Chinese constellations</div>,
+      rotationInfo: "Simulate stars movement in 24 hours: make the starchart perform 1 full rotation, in 3600x real-speed, meaning it will takes 24 seconds instead of 24 hours",
     }
   }
 
@@ -285,26 +292,46 @@ export default function Home() {
         <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
           <Typography variant="h3">{displayContent.chooseChart}</Typography>
         </Divider>
-        <ToggleButtonGroup
-          color="secondary"
-          value={showingStarchart}
-          exclusive
-          onChange={starchartChange}
-          aria-label="Platform"
-          style={{
-            paddingLeft: 10,
-            paddingRight: 10,
-            paddingTop: 3,
-            paddingBottom: 3,
-            minWidth: 0,
-            minHeight: 0,
-            maxHeight: "2.5rem",
-          }}
-        >
-          <ToggleButton value={1} style={{textTransform: "none",}}>{displayContent.iauChart}</ToggleButton>
-          <ToggleButton value={2} style={{textTransform: "none",}}>{displayContent.urbanChart}</ToggleButton>
-          <ToggleButton value={3} style={{textTransform: "none",}}>{displayContent.cnChart}</ToggleButton>
-        </ToggleButtonGroup>
+        <Grid>
+          <ToggleButtonGroup
+            color="secondary"
+            value={showingStarchart}
+            exclusive
+            onChange={starchartChange}
+            aria-label="Platform"
+            style={{
+              paddingLeft: 10,
+              paddingRight: 3,
+              paddingTop: 3,
+              paddingBottom: 3,
+              minWidth: 0,
+              minHeight: 0,
+              maxHeight: "2.5rem",
+            }}
+          >
+            <ToggleButton value={1} style={{textTransform: "none",}}>{displayContent.iauChart}</ToggleButton>
+            <ToggleButton value={2} style={{textTransform: "none",}}>{displayContent.urbanChart}</ToggleButton>
+            <ToggleButton value={3} style={{textTransform: "none",}}>{displayContent.cnChart}</ToggleButton>
+          </ToggleButtonGroup>
+          <Tooltip title={displayContent.chartInfo}>
+            <IconButton
+              // onClick={}
+              size="small"
+              color="secondary"
+              style={{
+                paddingLeft: 1,
+                paddingRight: 1,
+                paddingTop: 3,
+                paddingBottom: 3,
+                maxWidth: "3rem",
+                minWidth: 0,
+                minHeight: 0,
+              }}
+            >
+              <HelpIcon />
+            </IconButton>
+          </Tooltip>
+        </Grid>
         <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
           <Typography variant="h3">{displayContent.gotoT}</Typography>
         </Divider>
@@ -379,20 +406,43 @@ export default function Home() {
             &gt;
           </Button> 
           <br />*/}
-          <Button
-            variant="contained"
-            onClick={rotateAnimation}
-            style={{
-              textTransform: "none",
-              backgroundColor: "#bf616a",
-              paddingLeft: 10,
-              paddingRight: 10,
-              paddingTop: 3,
-              paddingBottom: 3,
-            }}
-          >
-            <Typography variant="h3">3600x</Typography>
-          </Button>
+          <Grid container direction="row" alignItems="center">
+            <Typography variant="h3" style={{paddingRight: 5,}}>
+              {displayContent.speed}
+            </Typography>
+            <Button
+              variant="contained"
+              onClick={rotateAnimation}
+              style={{
+                textTransform: "none",
+                backgroundColor: "#bf616a",
+                paddingLeft: 10,
+                paddingRight: 10,
+                paddingTop: 3,
+                paddingBottom: 3,
+              }}
+            >
+              <Typography variant="h3">3600x</Typography>
+            </Button>
+            <Tooltip title={displayContent.rotationInfo}>
+              <IconButton
+                // onClick={}
+                size="small"
+                color="secondary"
+                style={{
+                  paddingLeft: 5,
+                  paddingRight: 1,
+                  paddingTop: 3,
+                  paddingBottom: 3,
+                  maxWidth: "3rem",
+                  minWidth: 0,
+                  minHeight: 0,
+                }}
+              >
+                <HelpIcon />
+              </IconButton>
+            </Tooltip>
+          </Grid>
         </item>
         <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
           <Typography variant="h3">{displayContent.zoom}</Typography>
