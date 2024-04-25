@@ -286,11 +286,11 @@ export default function Home() {
         alignItems="center"
         spacing={1}
       >
-        <Typography variant="h1">
+        <Typography variant="h1" color="common.white">
           {displayContent.title}
         </Typography>
         <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
-          <Typography variant="h3">{displayContent.chooseChart}</Typography>
+          <Typography variant="h3"  color="common.white">{displayContent.chooseChart}</Typography>
         </Divider>
         <Grid>
           <ToggleButtonGroup
@@ -333,7 +333,7 @@ export default function Home() {
           </Tooltip>
         </Grid>
         <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
-          <Typography variant="h3">{displayContent.gotoT}</Typography>
+          <Typography variant="h3" color="common.white">{displayContent.gotoT}</Typography>
         </Divider>
         <Autocomplete
           size="small"
@@ -390,7 +390,7 @@ export default function Home() {
           <Typography variant="h3">GO</Typography>
         </Button>
         <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
-          <Typography variant="h3">{displayContent.rotation}</Typography>
+          <Typography variant="h3" color="common.white">{displayContent.rotation}</Typography>
         </Divider>
         <item>
           {/* <Button
@@ -407,7 +407,7 @@ export default function Home() {
           </Button> 
           <br />*/}
           <Grid container direction="row" alignItems="center">
-            <Typography variant="h3" style={{paddingRight: 5,}}>
+            <Typography variant="h3" color="common.white" style={{paddingRight: 5,}}>
               {displayContent.speed}
             </Typography>
             <Button
@@ -445,11 +445,11 @@ export default function Home() {
           </Grid>
         </item>
         <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
-          <Typography variant="h3">{displayContent.zoom}</Typography>
+          <Typography variant="h3" color="common.white">{displayContent.zoom}</Typography>
         </Divider>
         <ZoomControls />
         <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
-          <Typography variant="h3">Language</Typography>
+          <Typography variant="h3" color="common.white">Language</Typography>
         </Divider>
         <ToggleButtonGroup
           color="secondary"
