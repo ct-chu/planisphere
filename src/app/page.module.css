@@ -19,6 +19,12 @@
   transform: translate(0%, -50%);
  }
 
+ .imgStartchart {
+  height: 100%;
+  transition: opacity .15s ease-in-out;
+  position: absolute;
+ }
+
  .overlay {
   position: relative;
   bottom: 0;

@@ -13,6 +13,8 @@ import ZoomOutIcon from '@mui/icons-material/ZoomOut';
 import ZoomOutMapIcon from '@mui/icons-material/ZoomOutMap';
 import HelpIcon from '@mui/icons-material/Help';
 import SettingsIcon from '@mui/icons-material/Settings';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import StopIcon from '@mui/icons-material/Stop';
 
 import React, { useState, useEffect } from 'react';
 import { TransformWrapper, TransformComponent, useControls } from "react-zoom-pan-pinch";
@@ -20,6 +22,7 @@ import { useOrientation } from "react-use";
 import LazyLoad from 'react-lazyload';
 
 import { prefix } from './prefix.js';
+import { Place, PlayArrow, Stop } from '@mui/icons-material';
 
 const jacket = `${prefix}/STARMAPv2022_jacket.svg`
 const landscapeGIF = `${prefix}/landscape.gif`
@@ -135,6 +138,7 @@ export default function Home() {
   }
 
   const [rotateDeg, setRotateDeg] = useState(0)
+  const [currentDeg, setCurrentDeg] = useState(0)
   const [showingStarchart, setShowingStarchart] = useState(1)
   const [opacity, setOpacity] = useState([1, 0, 0])
   const [displayMonths, setDisplayMonths] = useState(months.hk)
@@ -146,6 +150,8 @@ export default function Home() {
   const screen = useOrientation();
   const [landscapeReminder, setLandscapeReminder] = useState(false)
   const [language, setLanguage] = useState("hk")
+  const [animation, setAnimation] = useState("none !important")
+  const [animationState, setAnimationState] = useState("paused")
 
   const [yellowStarchart, setYellowStarchart] = useState(`${prefix}/STARMAPv2022_yellow.svg`)
   const [orangeStarchart, setOrangeStarchart] = useState(`${prefix}/STARMAPv2022_orange.svg`)
@@ -162,11 +168,11 @@ export default function Home() {
       month: "月",
       day: "日",
       time: "時",
-      rotation: "旋轉一圈",
+      rotation: "旋轉",
       zoom: "縮放",
       speed: "速度：",
       chartInfo: <div>西方：顯示國際天文聯會（IAU）的88星座和4等或更光的星星<br />市區：只顯示在市區星空可見，較光的IAU星座，星座圖案和幾何圖形<br />中國：顯示中國古代星官</div>,
-      rotationInfo: "模擬星空在24小時內的移動：以現實的3600倍速將星圖旋轉一圈，即不是以24小時，而是以24秒旋轉一圈",
+      rotationInfo: "模擬星空隨時間變化的移動：以現實的3600倍速將星圖旋轉，即不是以24小時，而是以24秒旋轉一圈",
     },
     en: {
       title: "Interactive Planisphere",
@@ -178,11 +184,11 @@ export default function Home() {
       month: "Month",
       day: "Day",
       time: "Time",
-      rotation: "1 Full Rotation",
+      rotation: "Rotation",
       zoom: "Zoom",
       speed: "Speed:",
       chartInfo: <div>IAU: shows the 88 IAU constellations with stars up to magnitude of 4<br />Urban: shows IAU constellations but only those with brighter stars visible in urban night skies, constellation art, and asterisms<br />Chinese: shows ancient Chinese constellations</div>,
-      rotationInfo: "Simulate stars movement in 24 hours: make the starchart perform 1 full rotation, in 3600x real-speed, meaning it will takes 24 seconds instead of 24 hours",
+      rotationInfo: "Simulate star movement through time, but in 3600x real-speed, meaning it will takes 24 seconds instead of 24 hours to perform one full rotation",
     }
   }
 
@@ -234,19 +240,15 @@ export default function Home() {
   }
 
   const rotateToTime = () => {
+    let animationDeg = 360 - getCurrentRotation(document.getElementById("rotationWrapper"))
+    console.log(animationDeg)
     let closestOrigin = rotateDeg - rotateDeg % 360
     let selectedMonthOffset = -1 * monthOffsetValues[displayMonths.indexOf(month)]
     let selectedDayOffset = -1 * (Number(day) - 1) * dayDeg
     let selectedTimeOffset = timeOffsetValues[time]
-    let totalOffset = selectedMonthOffset + selectedDayOffset + selectedTimeOffset
+    let totalOffset = selectedMonthOffset + selectedDayOffset + selectedTimeOffset + animationDeg
     setRotateStyle(Math.sqrt(Math.abs(closestOrigin + totalOffset - rotateDeg)) / 15 + "s ease-in-out, opacity .15s ease-in-out")
     setRotateDeg(closestOrigin + totalOffset)
-  }
-
-  const rotateAnimation = () => {
-    console.log("rotate animation pressed")
-    setRotateStyle("24s linear, opacity .15s ease-in-out")
-    setRotateDeg(rotateDeg - 360)
   }
 
   const starchartChange = (event, newStarchart) => {
@@ -289,6 +291,22 @@ export default function Home() {
       setMonth(months.hk[displayMonths.indexOf(month)])
       setDisplayMonths(months.hk)
     }
+  }
+
+  function getCurrentRotation(el){
+    var st = window.getComputedStyle(el, null);
+    var tm = st.getPropertyValue("-webkit-transform") ||
+             st.getPropertyValue("-moz-transform") ||
+             st.getPropertyValue("-ms-transform") ||
+             st.getPropertyValue("-o-transform") ||
+             st.getPropertyValue("transform") ||
+             "none";
+    if (tm != "none") {
+      var values = tm.split('(')[1].split(')')[0].split(',');
+      var angle = Math.round(Math.atan2(values[1],values[0]) * (180/Math.PI));
+      return (angle < 0 ? angle + 360 : angle);
+    }
+    return 0;
   }
 
   const RightPanel = () => {
@@ -432,23 +450,53 @@ export default function Home() {
           </Button> 
           <br />*/}
           <Grid container direction="row" alignItems="center">
-            <Typography variant="h3" color="common.white" style={{paddingRight: 5,}}>
-              {displayContent.speed}
-            </Typography>
             <Button
               variant="contained"
-              onClick={rotateAnimation}
+              size="small"
+              onClick={()=>{
+                setAnimation("rotation 24s infinite linear")
+                setAnimationState("running")
+              }}
               style={{
                 textTransform: "none",
                 backgroundColor: "#bf616a",
-                paddingLeft: 5,
-                paddingRight: 5,
+                paddingLeft: 10,
+                paddingRight: 10,
                 paddingTop: 3,
                 paddingBottom: 3,
+                maxWidth: "3rem",
+                minWidth: 0,
+                minHeight: 0,
+                marginRight: "0.3rem",
                 height: "4vh",
+                width: "5vh",
               }}
             >
-              <Typography variant="h3">3600x</Typography>
+              <PlayArrow style={{ height: "4vh", }} />
+            </Button>
+            <Button
+              variant="contained"
+              size="small"
+              onClick={()=>{
+                setAnimationState("paused")
+                // setAnimation("none !important")
+              }}
+              style={{
+                textTransform: "none",
+                backgroundColor: "#bf616a",
+                paddingLeft: 10,
+                paddingRight: 10,
+                paddingTop: 3,
+                paddingBottom: 3,
+                maxWidth: "3rem",
+                minWidth: 0,
+                minHeight: 0,
+                marginRight: "0.3rem",
+                height: "4vh",
+                width: "5vh",
+              }}
+            >
+              <Stop style={{ height: "4vh", }} />
             </Button>
             <Tooltip title={displayContent.rotationInfo}>
               <IconButton
@@ -634,13 +682,15 @@ export default function Home() {
                 }}
               >
                 <div className={styles.starchart}>
-                  <img className={styles.imgStartchart} height="100%" style={{ transition: rotateStyle, rotate: `${rotateDeg}deg`, position: "absolute", opacity: `${opacity[0]}` }} src={yellowStarchart} />
-                  <LazyLoad>
-                    <img className={styles.imgStartchart} height="100%" style={{ transition: rotateStyle, rotate: `${rotateDeg}deg`, position: "absolute", opacity: `${opacity[1]}` }} src={orangeStarchart} />
-                  </LazyLoad>
-                  <LazyLoad>
-                    <img className={styles.imgStartchart} height="100%" style={{ transition: rotateStyle, rotate: `${rotateDeg}deg`, position: "absolute", opacity: `${opacity[2]}` }} src={redStarchart} />
-                  </LazyLoad>
+                  <div id="rotationWrapper" style={{ height: "100%", width: "100%", transformOrigin: "50% 50%", transition: `${rotateStyle}`, rotate: `${rotateDeg}deg`, position: "absolute", animation: `${animation}`, animationPlayState: `${animationState}`}}>
+                    <img className={styles.imgStartchart} style={{ opacity: `${opacity[0]}` }} src={yellowStarchart} />
+                    <LazyLoad>
+                      <img className={styles.imgStartchart} style={{ opacity: `${opacity[1]}` }} src={orangeStarchart} />
+                    </LazyLoad>
+                    <LazyLoad>
+                      <img className={styles.imgStartchart} style={{ opacity: `${opacity[2]}` }} src={redStarchart} />
+                    </LazyLoad>
+                  </div>
                   <div className={styles.overlay}>
                     <img height="100%" src={jacket} />
                   </div>
