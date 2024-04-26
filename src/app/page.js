@@ -12,9 +12,8 @@ import ZoomInIcon from '@mui/icons-material/ZoomIn';
 import ZoomOutIcon from '@mui/icons-material/ZoomOut';
 import ZoomOutMapIcon from '@mui/icons-material/ZoomOutMap';
 import HelpIcon from '@mui/icons-material/Help';
+import { PlayArrow, Stop } from '@mui/icons-material';
 import SettingsIcon from '@mui/icons-material/Settings';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import StopIcon from '@mui/icons-material/Stop';
 
 import React, { useState, useEffect } from 'react';
 import { TransformWrapper, TransformComponent, useControls } from "react-zoom-pan-pinch";
@@ -22,7 +21,6 @@ import { useOrientation } from "react-use";
 import LazyLoad from 'react-lazyload';
 
 import { prefix } from './prefix.js';
-import { Place, PlayArrow, Stop } from '@mui/icons-material';
 
 const jacket = `${prefix}/STARMAPv2022_jacket.svg`
 const landscapeGIF = `${prefix}/landscape.gif`
@@ -649,6 +647,7 @@ export default function Home() {
       <div className={styles.container} maxWidth={false}>
         <TransformWrapper
           wheel={{ disabled: true }}
+          panning={{velocityDisabled: true}}
           disablePadding={true}
         >
           <Grid container
