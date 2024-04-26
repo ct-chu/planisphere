@@ -1,11 +1,12 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { prefix } from './prefix.js';
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Interactive Planisphere 互動旋轉星圖",
-  description: "Interactive Planisphere 互動旋轉星圖",
+  title: "旋轉星圖 Planisphere",
+  description: "可觀天文館的網上互動旋轉星圖 An Online Interactive Planisphere from HKNEAC",
 };
 
 export default function RootLayout({ children }) {
@@ -15,6 +16,7 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet" />
+        <meta property="og:image" content={`${prefix}/planisphere-thumbnail_800x600.png`} />
       </head>
       <body className={inter.className}>{children}</body>
     </html>
