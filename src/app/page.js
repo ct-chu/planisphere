@@ -39,6 +39,9 @@ const darkTheme = createTheme({
       "Noto Sans TC",
       'sans-serif',
     ].join(','),
+    button: {
+      fontSize: "2vh",
+    },
   },
 });
 
@@ -62,9 +65,9 @@ darkTheme.typography.h3 = {
 }
 
 darkTheme.typography.h4 = {
-  fontSize: "0.8rem",
+  fontSize: "0.6rem",
   '@media (max-height:700px)': {
-    fontSize: '0.4rem',
+    fontSize: '0.5rem',
   },
   fontFamily: "Noto Sans TC",
 }
@@ -295,11 +298,16 @@ export default function Home() {
         direction="column"
         alignItems="center"
         spacing={1}
+        paddingTop= "8vh"
+        paddingBottom= "8vh"
       >
-        <Typography variant="h1" color="common.white">
+        <Typography variant="h1" color="common.white" style={{ paddingBottom:5 }}>
           {displayContent.title}
         </Typography>
-        <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
+        <Typography variant="h4" textAlign={"center"} color="#4c566a">
+          v20240424 by ctchu@HKNEAC
+        </Typography>
+        <Divider sx={{ paddingTop: "2vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
           <Typography variant="h3"  color="common.white">{displayContent.chooseChart}</Typography>
         </Divider>
         <Grid>
@@ -317,6 +325,7 @@ export default function Home() {
               minWidth: 0,
               minHeight: 0,
               maxHeight: "2.5rem",
+              height: "5vh",
             }}
           >
             <ToggleButton value={1} style={{textTransform: "none",}}>{displayContent.iauChart}</ToggleButton>
@@ -336,9 +345,11 @@ export default function Home() {
                 maxWidth: "3rem",
                 minWidth: 0,
                 minHeight: 0,
+                height: "3vh",
+                width: "3vh",
               }}
             >
-              <HelpIcon />
+              <HelpIcon style={{ height: "2vh", width: "2vh", }} />
             </IconButton>
           </Tooltip>
         </Grid>
@@ -356,7 +367,8 @@ export default function Home() {
             setDaysInMonth(newValue)
           }}
           sx={{ width: 155, paddingBottom: "1vh" }}
-          renderInput={(params) => <TextField {...params} label={displayContent.month} />}
+          renderInput={(params) => <TextField {...params} inputProps = {{...params.inputProps, sx: { fontSize: {xs: "3vh", md: "1.8vh"}, }}} label={displayContent.month} />}
+          ListboxProps={{ sx: { fontSize: {xs: "4vh", md: "1.8vh"}} }}
         />
         <Autocomplete
           size="small"
@@ -368,7 +380,8 @@ export default function Home() {
             setDay(newValue)
           }}
           sx={{ width: 155, paddingBottom: "1vh" }}
-          renderInput={(params) => <TextField {...params} label={displayContent.day} />}
+          renderInput={(params) => <TextField {...params} inputProps = {{...params.inputProps, sx: { fontSize: {xs: "3vh", md: "1.8vh"}, }}} label={displayContent.day} />}
+          ListboxProps={{ sx: { fontSize: {xs: "4vh", md: "1.8vh"}} }}
         />
         <Autocomplete
           size="small"
@@ -380,7 +393,8 @@ export default function Home() {
             setTime(newTime);
           }}
           sx={{ width: 155, paddingBottom: "1vh" }}
-          renderInput={(displayTime) => <TextField {...displayTime} label={displayContent.time} />}
+          renderInput={(displayTime) => <TextField {...displayTime} inputProps = {{...displayTime.inputProps, sx: { fontSize: {xs: "3vh", md: "1.8vh"}, }}} label={displayContent.time} />}
+          ListboxProps={{ sx: { fontSize: {xs: "4vh", md: "1.8vh"}} }}
         />
         <Button
           variant="contained"
@@ -395,6 +409,7 @@ export default function Home() {
             minWidth: 0,
             minHeight: 0,
             marginRight: "0.3rem",
+            height: "4vh",
           }}
         >
           <Typography variant="h3">GO</Typography>
@@ -426,10 +441,11 @@ export default function Home() {
               style={{
                 textTransform: "none",
                 backgroundColor: "#bf616a",
-                paddingLeft: 10,
-                paddingRight: 10,
+                paddingLeft: 5,
+                paddingRight: 5,
                 paddingTop: 3,
                 paddingBottom: 3,
+                height: "4vh",
               }}
             >
               <Typography variant="h3">3600x</Typography>
@@ -447,9 +463,11 @@ export default function Home() {
                   maxWidth: "3rem",
                   minWidth: 0,
                   minHeight: 0,
+                  height: "3vh",
+                  width: "3vh",
                 }}
               >
-                <HelpIcon />
+                <HelpIcon style={{ height: "2vh", width: "2vh", }} />
               </IconButton>
             </Tooltip>
           </Grid>
@@ -475,6 +493,7 @@ export default function Home() {
             minWidth: 0,
             minHeight: 0,
             maxHeight: "2.5rem",
+            height: "5vh",
           }}
         >
           <ToggleButton value={"hk"} style={{textTransform: "none",}}>中文</ToggleButton>
@@ -504,10 +523,12 @@ export default function Home() {
             minWidth: 0,
             minHeight: 0,
             marginRight: "0.3rem",
+            height: "4vh",
+            width: "5vh",
           }}
           onClick={() => zoomIn()}
         >
-          <ZoomInIcon />
+          <ZoomInIcon style={{ height: "3vh", }} />
         </Button>
         <Button
           variant="contained"
@@ -521,11 +542,13 @@ export default function Home() {
             maxWidth: "3rem",
             minWidth: 0,
             minHeight: 0,
-            marginRight: "0.3rem"
+            marginRight: "0.3rem",
+            height: "4vh",
+            width: "5vh",
           }}
           onClick={() => zoomOut()}
         >
-          <ZoomOutIcon />
+          <ZoomOutIcon style={{ height: "3vh", }} />
         </Button>
         <Button
           variant="contained"
@@ -539,10 +562,12 @@ export default function Home() {
             maxWidth: "3rem",
             minWidth: 0,
             minHeight: 0,
+            height: "4vh",
+            width: "5vh",
           }}
           onClick={() => resetTransform()}
         >
-          <ZoomOutMapIcon />
+          <ZoomOutMapIcon style={{ height: "3vh", }} />
         </Button>
       </Grid>
     );
@@ -617,7 +642,7 @@ export default function Home() {
                     <img className={styles.imgStartchart} height="100%" style={{ transition: rotateStyle, rotate: `${rotateDeg}deg`, position: "absolute", opacity: `${opacity[2]}` }} src={redStarchart} />
                   </LazyLoad>
                   <div className={styles.overlay}>
-                    <img height="100%" width="100%" src={jacket} />
+                    <img height="100%" src={jacket} />
                   </div>
                 </div>
               </TransformComponent>
@@ -627,13 +652,9 @@ export default function Home() {
               direction="column"
               justifyContent="space-around"
               height={"100%"}
+              overflow="scroll"
             >
               <RightPanel />
-              <Grid>
-                <Typography variant="h4" textAlign={"center"} color="#4c566a">
-                  v20240424 by ctchu@HKNEAC
-                </Typography>
-              </Grid>
             </Grid>
           </Grid>
         </TransformWrapper>
