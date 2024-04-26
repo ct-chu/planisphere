@@ -71,7 +71,10 @@ darkTheme.typography.h4 = {
 
 export default function Home() {
 
-  const months = ["1月 Jan", "2月 Feb", "3月 Mar", "4月 Apr", "5月 May", "6月 Jun", "7月 Jul", "8月 Aug", "9月 Sep", "10月 Oct", "11月 Nov", "12月 Dec"]
+  const months = {
+    hk: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+    en:["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+  }
   const monthOffsetValues = [0, 30.49, 58.11, 88.65, 118.33, 148.86, 178.52, 209.04, 239.64, 269.15, 299.78, 329.37]
   const dayDeg = 0.98
   const days31 = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"]
@@ -131,7 +134,8 @@ export default function Home() {
   const [rotateDeg, setRotateDeg] = useState(0)
   const [showingStarchart, setShowingStarchart] = useState(1)
   const [opacity, setOpacity] = useState([1, 0, 0])
-  const [month, setMonth] = useState(months[0])
+  const [displayMonths, setDisplayMonths] = useState(months.hk)
+  const [month, setMonth] = useState(displayMonths[0])
   const [days, setDays] = useState(days31)
   const [day, setDay] = useState(days[0])
   const [time, setTime] = useState(times[24])
@@ -228,7 +232,7 @@ export default function Home() {
 
   const rotateToTime = () => {
     let closestOrigin = rotateDeg - rotateDeg % 360
-    let selectedMonthOffset = -1 * monthOffsetValues[months.indexOf(month)]
+    let selectedMonthOffset = -1 * monthOffsetValues[displayMonths.indexOf(month)]
     let selectedDayOffset = -1 * (Number(day) - 1) * dayDeg
     let selectedTimeOffset = timeOffsetValues[time]
     let totalOffset = selectedMonthOffset + selectedDayOffset + selectedTimeOffset
@@ -265,16 +269,22 @@ export default function Home() {
       setOrangeStarchart(`${prefix}/STARMAPv2022_orange.svg`)
       setRedStarchart(`${prefix}/STARMAPv2022_red.svg`)
       setDisplayContent(content.hk)
+      setMonth(months.hk[displayMonths.indexOf(month)])
+      setDisplayMonths(months.hk)
     } else if (newLanguage == "en") {
       setYellowStarchart(`${prefix}/STARMAPv2022_yellow_eng.svg`)
       setOrangeStarchart(`${prefix}/STARMAPv2022_orange_eng.svg`)
       setRedStarchart(`${prefix}/STARMAPv2022_red_eng.svg`)
       setDisplayContent(content.en)
+      setMonth(months.en[displayMonths.indexOf(month)])
+      setDisplayMonths(months.en)
     } else {
       setYellowStarchart(`${prefix}/STARMAPv2022_yellow.svg`)
       setOrangeStarchart(`${prefix}/STARMAPv2022_orange.svg`)
       setRedStarchart(`${prefix}/STARMAPv2022_red.svg`)
       setDisplayContent(content.hk)
+      setMonth(months.hk[displayMonths.indexOf(month)])
+      setDisplayMonths(months.hk)
     }
   }
 
@@ -339,7 +349,7 @@ export default function Home() {
           size="small"
           disablePortal
           selectOnFocus
-          options={months}
+          options={displayMonths}
           value={month}
           onChange={(event, newValue) => {
             setMonth(newValue)
