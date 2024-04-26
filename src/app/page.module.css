@@ -9,6 +9,10 @@
   box-sizing: border-box;
   background-color: black;
  }
+ 
+ .container::-webkit-scrollbar {
+  display: none;
+}
 
  .starchart {
   height: 90%;

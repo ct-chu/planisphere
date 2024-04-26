@@ -4,7 +4,7 @@ import styles from './page.module.css'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
-import { Typography, TextField, Autocomplete, Button, Divider, ToggleButton, ToggleButtonGroup, Backdrop, IconButton, Tooltip } from '@mui/material';
+import { Typography, TextField, Autocomplete, Button, Divider, ToggleButton, ToggleButtonGroup, Backdrop, IconButton, Tooltip, SpeedDial, SpeedDialAction } from '@mui/material';
 
 // import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 // import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
@@ -12,7 +12,11 @@ import ZoomInIcon from '@mui/icons-material/ZoomIn';
 import ZoomOutIcon from '@mui/icons-material/ZoomOut';
 import ZoomOutMapIcon from '@mui/icons-material/ZoomOutMap';
 import HelpIcon from '@mui/icons-material/Help';
-import { PlayArrow, Stop } from '@mui/icons-material';
+import { MoreHoriz, PlayArrow, Stop } from '@mui/icons-material';
+import HomeIcon from '@mui/icons-material/Home';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import YouTubeIcon from '@mui/icons-material/YouTube';
 import SettingsIcon from '@mui/icons-material/Settings';
 
 import React, { useState, useEffect } from 'react';
@@ -191,6 +195,13 @@ export default function Home() {
   }
 
   const [displayContent, setDisplayContent] = useState(content.hk)
+
+  const actions = [
+    {name: "Home 主頁", icon: <HomeIcon />, url: "http://www.hokoon.edu.hk/"},
+    {name: "Facebook", icon: <FacebookIcon />, url: "https://www.facebook.com/hokoon.astro/"},
+    {name: "Instagram", icon: <InstagramIcon />, url: "https://www.instagram.com/hokoon.astro/"},
+    {name: "YouTube", icon: <YouTubeIcon />, url: "https://www.youtube.com/@HokoonChannel"},
+  ]
 
   // const rotate10deg = () => {
   //   setRotateDeg(rotateDeg + 10)
@@ -644,6 +655,32 @@ export default function Home() {
           </Typography>
         </Grid>
       </Backdrop>
+      <SpeedDial
+        ariaLabel="more..."
+        direction="up"
+        sx={{ position: 'absolute', bottom: 16, right: 16 }}
+        icon={<MoreHoriz />}
+        FabProps={{
+          sx: {
+            bgcolor: 'secondary.main',
+            height: {xs: "2rem", md: "2.5rem"},
+            width: {xs: "2rem", md: "2.5rem"},
+            '&:hover': {
+              bgcolor: 'secondary.main',
+            }
+          }
+        }}
+      >
+        {actions.map((action) => (
+          <SpeedDialAction
+            key={action.name}
+            icon={action.icon}
+            tooltipTitle={action.name}
+            tooltipOpen
+            onClick={(event)=>{window.open(action.url)}}
+          />
+        ))}
+      </SpeedDial>
       <div className={styles.container} maxWidth={false}>
         <TransformWrapper
           wheel={{ disabled: true }}
