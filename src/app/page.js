@@ -77,6 +77,10 @@ darkTheme.typography.h4 = {
   fontFamily: "Noto Sans TC",
 }
 
+if (process.env.NODE_ENV === "production") {
+  console.log = () => { };
+}
+
 export default function Home() {
 
   const months = {
@@ -212,7 +216,6 @@ export default function Home() {
 
   // const rotatem10deg = () => {
   //   setRotateDeg(rotateDeg - 10)
-  //   console.log(rotateDeg)
   // }
 
   useEffect(() => {
@@ -229,7 +232,7 @@ export default function Home() {
   useEffect(() => {
     
     (screen.type === "portrait-primary") || (screen.type === "portrait-secondary") ? setLandscapeReminder(true) : setLandscapeReminder(false)
-    console.log(screen.type)
+    console.log("screen type = "+ screen.type)
   }, [screen])
 
   const setDaysInMonth = (month) => {
@@ -243,7 +246,6 @@ export default function Home() {
         dayInM.pop()
       }
       setDays(dayInM)
-      console.log(dayInM)
     } else {
       setDays(dayInM)
     }
@@ -252,7 +254,7 @@ export default function Home() {
 
   const rotateToTime = () => {
     let animationDeg = 360 - getCurrentRotation(document.getElementById("rotationWrapper"))
-    console.log(animationDeg)
+    console.log("animation deg = " + animationDeg)
     let closestOrigin = rotateDeg - rotateDeg % 360
     let selectedMonthOffset = -1 * monthOffsetValues[displayMonths.indexOf(month)]
     let selectedDayOffset = -1 * (Number(day) - 1) * dayDeg
