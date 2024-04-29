@@ -175,6 +175,7 @@ export default function Home() {
       speed: "速度：",
       chartInfo: <div>西方：顯示國際天文聯會（IAU）的88星座和4等或更光的星星<br />市區：只顯示在市區星空可見，較光的IAU星座，星座圖案和幾何圖形<br />中國：顯示中國古代星官</div>,
       rotationInfo: "模擬星空隨時間變化的移動：以現實的3600倍速將星圖旋轉，即不是以24小時，而是以24秒旋轉一圈",
+      homepage: "主頁",
     },
     en: {
       title: "Interactive Planisphere",
@@ -191,13 +192,14 @@ export default function Home() {
       speed: "Speed:",
       chartInfo: <div>IAU: shows the 88 IAU constellations with stars up to magnitude of 4<br />Urban: shows IAU constellations but only those with brighter stars visible in urban night skies, constellation art, and asterisms<br />Chinese: shows ancient Chinese constellations</div>,
       rotationInfo: "Simulate star movement through time, but in 3600x real-speed, meaning it will takes 24 seconds instead of 24 hours to perform one full rotation",
+      homepage: "Homepage",
     }
   }
 
   const [displayContent, setDisplayContent] = useState(content.hk)
 
   const actions = [
-    {name: "Home 主頁", icon: <HomeIcon />, url: "http://www.hokoon.edu.hk/"},
+    {name: displayContent.homepage, icon: <HomeIcon />, url: "http://www.hokoon.edu.hk/"},
     {name: "Facebook", icon: <FacebookIcon />, url: "https://www.facebook.com/hokoon.astro/"},
     {name: "Instagram", icon: <InstagramIcon />, url: "https://www.instagram.com/hokoon.astro/"},
     {name: "YouTube", icon: <YouTubeIcon />, url: "https://www.youtube.com/@HokoonChannel"},
