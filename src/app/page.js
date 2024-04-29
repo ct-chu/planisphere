@@ -312,7 +312,7 @@ export default function Home() {
              "none";
     if (tm != "none") {
       var values = tm.split('(')[1].split(')')[0].split(',');
-      var angle = Math.round(Math.atan2(values[1],values[0]) * (180/Math.PI));
+      var angle = Math.atan2(values[1],values[0]) * (180/Math.PI);
       return (angle < 0 ? angle + 360 : angle);
     }
     return 0;
