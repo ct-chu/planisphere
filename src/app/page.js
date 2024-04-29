@@ -393,7 +393,7 @@ export default function Home() {
             setMonth(newValue)
             setDaysInMonth(newValue)
           }}
-          sx={{ width: 155, paddingBottom: "1vh" }}
+          sx={{ width: "20vh", paddingBottom: "1vh" }}
           renderInput={(params) => <TextField {...params} inputProps = {{...params.inputProps, sx: { fontSize: {xs: "3vh", md: "1.8vh"}, }}} label={displayContent.month} />}
           ListboxProps={{ sx: { fontSize: {xs: "4vh", md: "1.8vh"}} }}
         />
@@ -406,7 +406,7 @@ export default function Home() {
           onChange={(event, newValue) => {
             setDay(newValue)
           }}
-          sx={{ width: 155, paddingBottom: "1vh" }}
+          sx={{ width: "20vh", paddingBottom: "1vh" }}
           renderInput={(params) => <TextField {...params} inputProps = {{...params.inputProps, sx: { fontSize: {xs: "3vh", md: "1.8vh"}, }}} label={displayContent.day} />}
           ListboxProps={{ sx: { fontSize: {xs: "4vh", md: "1.8vh"}} }}
         />
@@ -419,7 +419,7 @@ export default function Home() {
           onChange={(eventT, newTime) => {
             setTime(newTime);
           }}
-          sx={{ width: 155, paddingBottom: "1vh" }}
+          sx={{ width: "20vh", paddingBottom: "1vh" }}
           renderInput={(displayTime) => <TextField {...displayTime} inputProps = {{...displayTime.inputProps, sx: { fontSize: {xs: "3vh", md: "1.8vh"}, }}} label={displayContent.time} />}
           ListboxProps={{ sx: { fontSize: {xs: "4vh", md: "1.8vh"}} }}
         />
