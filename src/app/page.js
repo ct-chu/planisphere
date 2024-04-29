@@ -19,7 +19,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import SettingsIcon from '@mui/icons-material/Settings';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, version } from 'react';
 import { TransformWrapper, TransformComponent, useControls } from "react-zoom-pan-pinch";
 import { useOrientation } from "react-use";
 import LazyLoad from 'react-lazyload';
@@ -28,6 +28,7 @@ import { prefix } from './prefix.js';
 
 const jacket = `${prefix}/STARMAPv2022_jacket.svg`
 const landscapeGIF = `${prefix}/landscape.gif`
+const versionInfo = "v20240429 by ctchu@HKNEAC"
 
 const darkTheme = createTheme({
   palette: {
@@ -336,7 +337,7 @@ export default function Home() {
           {displayContent.title}
         </Typography>
         <Typography variant="h4" textAlign={"center"} color="#4c566a">
-          v20240424 by ctchu@HKNEAC
+          {versionInfo}
         </Typography>
         <Divider sx={{ paddingTop: "2vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
           <Typography variant="h3"  color="common.white">{displayContent.chooseChart}</Typography>
