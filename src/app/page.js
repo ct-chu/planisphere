@@ -28,7 +28,7 @@ import { prefix } from './prefix.js';
 
 const jacket = `${prefix}/STARMAPv2022_jacket.svg`
 const landscapeGIF = `${prefix}/landscape.gif`
-const versionInfo = "v20240429 by ctchu@HKNEAC"
+const versionInfo = "v1.0.0(20240430) by ctchu@HKNEAC"
 
 const darkTheme = createTheme({
   palette: {
@@ -273,8 +273,10 @@ export default function Home() {
     let selectedDayOffset = -1 * (Number(day) - 1) * dayDeg
     let selectedTimeOffset = timeOffsetValues[time]
     let totalOffset = selectedMonthOffset + selectedDayOffset + selectedTimeOffset + animationDeg
+    if (totalOffset%360 != 0) {
     setRotateStyle(Math.sqrt(Math.abs(closestOrigin + totalOffset - rotateDeg)) / 15 + "s ease-in-out, opacity .15s ease-in-out")
     setRotateDeg(closestOrigin + totalOffset)
+    }
   }
 
   const starchartChange = (event, newStarchart) => {
