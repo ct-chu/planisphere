@@ -10,7 +10,7 @@ import { Typography, TextField, Autocomplete, Button, Divider, ToggleButton, Tog
 // import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
 import ZoomOutIcon from '@mui/icons-material/ZoomOut';
-import ZoomOutMapIcon from '@mui/icons-material/ZoomOutMap';
+import ZoomInMapIcon from '@mui/icons-material/ZoomInMap';
 import HelpIcon from '@mui/icons-material/Help';
 import { MoreHoriz, PlayArrow, Stop } from '@mui/icons-material';
 import HomeIcon from '@mui/icons-material/Home';
@@ -629,7 +629,7 @@ export default function Home() {
           }}
           onClick={() => resetTransform()}
         >
-          <ZoomOutMapIcon style={{ height: "3vh", }} />
+          <ZoomInMapIcon style={{ height: "3vh", }} />
         </Button>
       </Grid>
     );
