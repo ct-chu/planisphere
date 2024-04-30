@@ -7,6 +7,17 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "旋轉星圖 Planisphere",
   description: "可觀天文館的網上互動旋轉星圖 An Online Interactive Planisphere from HKNEAC",
+  manifest: `${prefix}/pwa/manifest.json`,
+  appleWebApp: {
+    title: "可觀天文助理",
+    statusBarStyle: "black-translucent",
+  },
+  viewport: {
+    width: "device-width",
+    initalScale: 1,
+    maximumScale: 1,
+    userScalable: "no",
+  },
 };
 
 export default function RootLayout({ children }) {
