@@ -332,6 +332,7 @@ export default function Home() {
         spacing={1}
         paddingTop= "8vh"
         paddingBottom= "8vh"
+        margin="0"
       >
         <Typography variant="h1" color="common.white" style={{ paddingBottom:5 }}>
           {displayContent.title}
@@ -740,10 +741,13 @@ export default function Home() {
             </Grid>
             <Grid container
               xs={3}
+              padding="0"
               direction="column"
               justifyContent="space-around"
               height={"100%"}
-              overflow="scroll"
+              style={{
+                overflow: "auto"
+              }}
             >
               <RightPanel />
             </Grid>
