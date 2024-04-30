@@ -181,6 +181,12 @@ export default function Home() {
       chartInfo: <div>西方：顯示國際天文聯會（IAU）的88星座和4等或更光的星星<br />市區：只顯示在市區星空可見，較光的IAU星座，星座圖案和幾何圖形<br />中國：顯示中國古代星官</div>,
       rotationInfo: "模擬星空隨時間變化的移動：以現實的3600倍速將星圖旋轉，即不是以24小時，而是以24秒旋轉一圈",
       homepage: "主頁",
+      startRotation: "開始旋轉",
+      stopRotation: "停止旋轉",
+      zoomIn: "放大星圖",
+      zoomOut: "縮小星圖",
+      zoomReset: "重設縮放（縮到最少）",
+      more: "更多"
     },
     en: {
       title: "Interactive Planisphere",
@@ -198,6 +204,12 @@ export default function Home() {
       chartInfo: <div>IAU: shows the 88 IAU constellations with stars up to magnitude of 4<br />Urban: shows IAU constellations but only those with brighter stars visible in urban night skies, constellation art, and asterisms<br />Chinese: shows ancient Chinese constellations</div>,
       rotationInfo: "Simulate star movement through time, but in 3600x real-speed, meaning it will takes 24 seconds instead of 24 hours to perform one full rotation",
       homepage: "Homepage",
+      startRotation: "Start rotation",
+      stopRotation: "Stop rotation",
+      zoomIn: "Zoom in planisphere",
+      zoomOut: "Zoom out planisphere",
+      zoomReset: "Reset zoom (zoom out to smallest)",
+      more: "More",
     }
   }
 
@@ -349,7 +361,8 @@ export default function Home() {
             value={showingStarchart}
             exclusive
             onChange={starchartChange}
-            aria-label="Platform"
+            title={displayContent.chooseChart}
+            aria-label={displayContent.chooseChart}
             style={{
               paddingLeft: 10,
               paddingRight: 3,
@@ -432,6 +445,8 @@ export default function Home() {
         <Button
           variant="contained"
           onClick={rotateToTime}
+          title={displayContent.gotoT}
+          aria-label={displayContent.gotoT}
           style={{
             backgroundColor: "#bf616a",
             paddingLeft: 10,
@@ -468,6 +483,8 @@ export default function Home() {
             <Button
               variant="contained"
               size="small"
+              title={displayContent.startRotation}
+              aria-label={displayContent.startRotation}
               onClick={()=>{
                 setAnimation("rotation 24s infinite linear")
                 setAnimationState("running")
@@ -492,6 +509,8 @@ export default function Home() {
             <Button
               variant="contained"
               size="small"
+              title={displayContent.stopRotation}
+              aria-label={displayContent.stopRotation}
               onClick={()=>{
                 setAnimationState("paused")
                 // setAnimation("none !important")
@@ -547,7 +566,8 @@ export default function Home() {
           value={language}
           exclusive
           onChange={languageChange}
-          aria-label="Platform"
+          title="Choose language"
+          aria-label="Choose Language"
           style={{
             paddingLeft: 10,
             paddingRight: 10,
@@ -575,6 +595,8 @@ export default function Home() {
         <Button
           variant="contained"
           size="small"
+          title={displayContent.zoomIn}
+          aria-label={displayContent.zoomIn}
           style={{
             textTransform: "none",
             backgroundColor: "#bf616a",
@@ -595,6 +617,8 @@ export default function Home() {
         </Button>
         <Button
           variant="contained"
+          title={displayContent.zoomOut}
+          aria-label={displayContent.zoomOut}
           style={{
             textTransform: "none",
             backgroundColor: "#bf616a",
@@ -615,6 +639,8 @@ export default function Home() {
         </Button>
         <Button
           variant="contained"
+          title={displayContent.zoomReset}
+          aria-label={displayContent.zoomReset}
           style={{
             textTransform: "none",
             backgroundColor: "#bf616a",
@@ -662,7 +688,7 @@ export default function Home() {
         </Grid>
       </Backdrop>
       <SpeedDial
-        ariaLabel="more..."
+        ariaLabel={displayContent.more}
         direction="up"
         sx={{ position: 'absolute', bottom: 16, right: 16 }}
         icon={<MoreHoriz />}
