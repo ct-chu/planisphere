@@ -239,10 +239,10 @@ export default function Home() {
   const setDaysInMonth = (month) => {
     let dayInM = days31
     console.log("month chosen")
-    if ((month == "4月 Apr") || (month == "6月 Jun") || (month == "9月 Sep") || (month == "11月 Nov")) {
+    if ((month == displayMonths[3]) || (month == displayMonths[5]) || (month == displayMonths[8]) || (month == displayMonths[10])) {
       dayInM.pop()
       setDays(dayInM)
-    } else if (month == "2月 Feb") {
+    } else if (month == displayMonths[1]) {
       for (let i = 0; i < 3; i++) {
         dayInM.pop()
       }
