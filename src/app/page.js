@@ -144,7 +144,7 @@ export default function Home() {
     "6:00 AM": -89.4,
   }
 
-  const [rotateDeg, setRotateDeg] = useState(0)
+  const [rotateDeg, setRotateDeg] = useState(59.5)
   const [currentDeg, setCurrentDeg] = useState(0)
   const [showingStarchart, setShowingStarchart] = useState(1)
   const [opacity, setOpacity] = useState([1, 0, 0])
@@ -152,7 +152,7 @@ export default function Home() {
   const [month, setMonth] = useState(displayMonths[0])
   const [days, setDays] = useState(days31)
   const [day, setDay] = useState(days[0])
-  const [time, setTime] = useState(times[24])
+  const [time, setTime] = useState(times[8])
   const [rotateStyle, setRotateStyle] = useState("1s ease-in-out, opacity .15s ease-in-out")
   const screen = useOrientation();
   const [landscapeReminder, setLandscapeReminder] = useState(false)
