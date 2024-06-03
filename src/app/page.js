@@ -273,7 +273,9 @@ export default function Home() {
     let selectedDayOffset = -1 * (Number(day) - 1) * dayDeg
     let selectedTimeOffset = timeOffsetValues[time]
     let totalOffset = selectedMonthOffset + selectedDayOffset + selectedTimeOffset + animationDeg
-    if (totalOffset%360 != 0) {
+    let rotationAngle = Math.abs(totalOffset - rotateDeg)
+    let rotationAngleMod = Math.abs(totalOffset%360 - rotateDeg%360)
+    if (rotationAngle > 0.1 && rotationAngleMod > 0.1 ) {
     setRotateStyle(Math.sqrt(Math.abs(closestOrigin + totalOffset - rotateDeg)) / 15 + "s ease-in-out, opacity .15s ease-in-out")
     setRotateDeg(closestOrigin + totalOffset)
     }
