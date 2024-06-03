@@ -1,5 +1,7 @@
 This is a online interactive version of the planisphere from HKNEAC.
-
+The production copy is [here](http://www.hokoon.edu.hk/planisphere/)
+Live Demo on [Github Page](https://ct-chu.github.io/planisphere/)  
+  
 ## Functionality implemented
 
 1. View the constellations in the night sky of a specific date and time of the year.
