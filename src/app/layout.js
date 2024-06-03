@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { prefix } from './prefix.js';
+import Script from 'next/script'
 
 const inter = Inter({ subsets: ["latin"] });
 
