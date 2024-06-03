@@ -24,6 +24,18 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        <div className="container">
+          <Script async src="https://www.googletagmanager.com/gtag/js?id=G-VP2D6ZZ6BT" />
+          <Script id="google-analytics">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+    
+              gtag('config', 'G-VP2D6ZZ6BT');
+            `}
+          </Script>
+        </div>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet" />
