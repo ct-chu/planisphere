@@ -417,7 +417,7 @@ export default function Home() {
             setDaysInMonth(newValue)
           }}
           sx={{ width: "20vh", paddingBottom: "1vh" }}
-          renderInput={(params) => <TextField {...params} inputProps = {{...params.inputProps, sx: { fontSize: {xs: "3vh", md: "1.8vh"}, }}} label={displayContent.month} />}
+          renderInput={(params) => <TextField {...params} inputProps = {{...params.inputProps, sx: { fontSize: {xs: "3vh", md: "1.8vh"}, }}} label={<h6>{displayContent.month}</h6>} />}
           ListboxProps={{ sx: { fontSize: {xs: "4vh", md: "1.8vh"}} }}
         />
         <Autocomplete
@@ -430,7 +430,7 @@ export default function Home() {
             setDay(newValue)
           }}
           sx={{ width: "20vh", paddingBottom: "1vh" }}
-          renderInput={(params) => <TextField {...params} inputProps = {{...params.inputProps, sx: { fontSize: {xs: "3vh", md: "1.8vh"}, }}} label={displayContent.day} />}
+          renderInput={(params) => <TextField {...params} inputProps = {{...params.inputProps, sx: { fontSize: {xs: "3vh", md: "1.8vh"}, }}} label={<h6>{displayContent.day}</h6>} />}
           ListboxProps={{ sx: { fontSize: {xs: "4vh", md: "1.8vh"}} }}
         />
         <Autocomplete
@@ -443,7 +443,7 @@ export default function Home() {
             setTime(newTime);
           }}
           sx={{ width: "20vh", paddingBottom: "1vh" }}
-          renderInput={(displayTime) => <TextField {...displayTime} inputProps = {{...displayTime.inputProps, sx: { fontSize: {xs: "3vh", md: "1.8vh"}, }}} label={displayContent.time} />}
+          renderInput={(displayTime) => <TextField {...displayTime} inputProps = {{...displayTime.inputProps, sx: { fontSize: {xs: "3vh", md: "1.8vh"}, }}} label={<h6>{displayContent.time}</h6>} />}
           ListboxProps={{ sx: { fontSize: {xs: "4vh", md: "1.8vh"}} }}
         />
         <Button
