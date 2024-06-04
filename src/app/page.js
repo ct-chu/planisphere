@@ -4,7 +4,7 @@ import styles from './page.module.css'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
-import { Typography, TextField, Autocomplete, Button, Divider, ToggleButton, ToggleButtonGroup, Backdrop, IconButton, Tooltip, SpeedDial, SpeedDialAction } from '@mui/material';
+import { Typography, TextField, Autocomplete, Button, Divider, ToggleButton, ToggleButtonGroup, Backdrop, IconButton, Tooltip, SpeedDial, SpeedDialAction, SvgIcon } from '@mui/material';
 
 // import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 // import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
@@ -186,7 +186,8 @@ export default function Home() {
       zoomIn: "放大星圖",
       zoomOut: "縮小星圖",
       zoomReset: "重設縮放（縮到最少）",
-      more: "更多"
+      more: "更多",
+      zoomToSky:"將天空置中",
     },
     en: {
       title: "Interactive Planisphere",
@@ -210,6 +211,7 @@ export default function Home() {
       zoomOut: "Zoom out planisphere",
       zoomReset: "Reset zoom (zoom out to smallest)",
       more: "More",
+      zoomToSky:"Centre on the sky",
     }
   }
 
@@ -221,6 +223,23 @@ export default function Home() {
     {name: "Instagram", icon: <InstagramIcon />, url: "https://www.instagram.com/hokoon.astro/"},
     {name: "YouTube", icon: <YouTubeIcon />, url: "https://www.youtube.com/@HokoonChannel"},
   ]
+
+  const ZoomToSkyIcon = () => {
+    return(
+      <SvgIcon style={{ height: "3vh" }}>
+        <svg viewBox="0 0 1182 1182" xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" >
+            <path d="M593.352,191.596C1037.26,200.331 1152.14,411.603 1131.2,572.477C1096.86,836.357 826.467,989.517 593.352,989.517C249.565,989.517 68.179,726.567 49.478,572.477C33.265,438.885 120.438,309.582 285.011,243.282C418.548,189.486 593.352,191.596 593.352,191.596ZM587.751,350.79L529.704,529.44L341.86,529.44L493.829,639.851L435.782,818.501L587.751,708.09L739.719,818.501L681.673,639.851L833.641,529.44L645.798,529.44L587.751,350.79Z" fill="#000"/>
+        </svg>
+      </SvgIcon>
+  )}
+  const ZoomOutMaxIcon = () => {
+    return(
+      <SvgIcon style={{ height: "3vh" }}>
+        <svg viewBox="0 0 1182 1182" xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" >
+            <path d="M590.551,0C590.551,0 808.724,-5.349 965.91,151.22C1127.77,312.444 1133.24,502.17 1133.24,502.17L1181.1,502.17L1181.1,1039.49L1073.77,1181.1L107.334,1181.1L0,1039.49L0,502.17L47.863,502.17C47.863,502.17 53.332,312.444 215.192,151.22C372.378,-5.349 590.551,0 590.551,0ZM592.932,466.192C592.932,466.192 444.337,464.398 330.821,510.129C190.923,566.488 116.82,676.405 130.602,789.966C146.499,920.954 300.69,1144.48 592.932,1144.48C791.095,1144.48 1020.94,1014.28 1050.14,789.966C1067.94,653.213 970.282,473.617 592.932,466.192ZM588.171,601.518L637.514,753.382L797.194,753.382L668.011,847.24L717.354,999.104L588.171,905.247L458.987,999.104L508.331,847.24L379.147,753.382L538.827,753.382L588.171,601.518Z" fill="#000"/>
+        </svg>
+      </SvgIcon>
+  )}
 
   // const rotate10deg = () => {
   //   setRotateDeg(rotateDeg + 10)
@@ -591,7 +610,7 @@ export default function Home() {
   }
 
   const ZoomControls = () => {
-    const { zoomIn, zoomOut, resetTransform } = useControls();
+    const { zoomIn, zoomOut, zoomToElement, resetTransform } = useControls();
     return (
       <Grid container
         direction="row"
@@ -643,6 +662,28 @@ export default function Home() {
         </Button>
         <Button
           variant="contained"
+          title={displayContent.zoomToSky}
+          aria-label={displayContent.zoomToSky}
+          style={{
+            textTransform: "none",
+            backgroundColor: "#bf616a",
+            paddingLeft: 10,
+            paddingRight: 10,
+            paddingTop: 3,
+            paddingBottom: 3,
+            maxWidth: "3rem",
+            minWidth: 0,
+            minHeight: 0,
+            marginRight: "0.3rem",
+            height: "4vh",
+            width: "5vh",
+          }}
+          onClick={() => zoomToElement("skyarea",1.55,200)}
+        >
+          <ZoomToSkyIcon style={{ height: "3vh" }}/>
+        </Button>
+        <Button
+          variant="contained"
           title={displayContent.zoomReset}
           aria-label={displayContent.zoomReset}
           style={{
@@ -660,7 +701,7 @@ export default function Home() {
           }}
           onClick={() => resetTransform()}
         >
-          <ZoomInMapIcon style={{ height: "3vh", }} />
+          <ZoomOutMaxIcon />
         </Button>
       </Grid>
     );
@@ -765,6 +806,7 @@ export default function Home() {
                   </div>
                   <div className={styles.overlay}>
                     <img height="100%" src={jacket} />
+                    <div className={styles.overlay} id="skyarea" style={{height:"55%", width:"75%", position: "absolute", right:"12.5%", bottom:"3%"}}></div>
                   </div>
                 </div>
               </TransformComponent>
