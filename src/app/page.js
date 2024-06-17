@@ -26,9 +26,9 @@ import LazyLoad from 'react-lazyload';
 
 import { prefix } from './prefix.js';
 
-const jacket = `${prefix}/STARMAPv2022_jacket.svg`
+const jacket = `${prefix}/STARMAP_jacket_front.svg`
 const landscapeGIF = `${prefix}/landscape.gif`
-const versionInfo = "v1.1.0(20240604) by ctchu@HKNEAC"
+const versionInfo = "v1.1.1(20240617) by ctchu@HKNEAC"
 
 const darkTheme = createTheme({
   palette: {
@@ -160,9 +160,9 @@ export default function Home() {
   const [animation, setAnimation] = useState("none !important")
   const [animationState, setAnimationState] = useState("paused")
 
-  const [yellowStarchart, setYellowStarchart] = useState(`${prefix}/STARMAPv2022_yellow.svg`)
-  const [orangeStarchart, setOrangeStarchart] = useState(`${prefix}/STARMAPv2022_orange.svg`)
-  const [redStarchart, setRedStarchart] = useState(`${prefix}/STARMAPv2022_red.svg`)
+  const [iauStarchart, setIauStarchart] = useState(`${prefix}/STARMAP_IAU_CHN.svg`)
+  const [urbanStarchart, setUrbanStarchart] = useState(`${prefix}/STARMAP_URBAN_CHN.svg`)
+  const [chnStarchart, setChnStarchart] = useState(`${prefix}/STARMAP_CHN_CHN.svg`)
 
   const content = {
     hk: {
@@ -319,23 +319,23 @@ export default function Home() {
   const languageChange = (event, newLanguage) => {
     setLanguage(newLanguage)
     if (newLanguage == "hk") {
-      setYellowStarchart(`${prefix}/STARMAPv2022_yellow.svg`)
-      setOrangeStarchart(`${prefix}/STARMAPv2022_orange.svg`)
-      setRedStarchart(`${prefix}/STARMAPv2022_red.svg`)
+      setIauStarchart(`${prefix}/STARMAP_IAU_CHN.svg`)
+      setUrbanStarchart(`${prefix}/STARMAP_URBAN_CHN.svg`)
+      setChnStarchart(`${prefix}/STARMAP_CHN_CHN.svg`)
       setDisplayContent(content.hk)
       setMonth(months.hk[displayMonths.indexOf(month)])
       setDisplayMonths(months.hk)
     } else if (newLanguage == "en") {
-      setYellowStarchart(`${prefix}/STARMAPv2022_yellow_eng.svg`)
-      setOrangeStarchart(`${prefix}/STARMAPv2022_orange_eng.svg`)
-      setRedStarchart(`${prefix}/STARMAPv2022_red_eng.svg`)
+      setIauStarchart(`${prefix}/STARMAP_IAU_ENG.svg`)
+      setUrbanStarchart(`${prefix}/STARMAP_URBAN_ENG.svg`)
+      setChnStarchart(`${prefix}/STARMAP_CHN_ENG.svg`)
       setDisplayContent(content.en)
       setMonth(months.en[displayMonths.indexOf(month)])
       setDisplayMonths(months.en)
     } else {
-      setYellowStarchart(`${prefix}/STARMAPv2022_yellow.svg`)
-      setOrangeStarchart(`${prefix}/STARMAPv2022_orange.svg`)
-      setRedStarchart(`${prefix}/STARMAPv2022_red.svg`)
+      setIauStarchart(`${prefix}/STARMAP_IAU_CHN.svg`)
+      setUrbanStarchart(`${prefix}/STARMAP_URBAN_CHN.svg`)
+      setChnStarchart(`${prefix}/STARMAP_CHN_CHN.svg`)
       setDisplayContent(content.hk)
       setMonth(months.hk[displayMonths.indexOf(month)])
       setDisplayMonths(months.hk)
@@ -796,12 +796,12 @@ export default function Home() {
               >
                 <div className={styles.starchart}>
                   <div id="rotationWrapper" style={{ height: "100%", width: "100%", transformOrigin: "50% 50%", transition: `${rotateStyle}`, rotate: `${rotateDeg}deg`, position: "absolute", animation: `${animation}`, animationPlayState: `${animationState}`}}>
-                    <img className={styles.imgStartchart} style={{ opacity: `${opacity[0]}` }} src={yellowStarchart} />
+                    <img className={styles.imgStartchart} style={{ opacity: `${opacity[0]}` }} src={iauStarchart} />
                     <LazyLoad>
-                      <img className={styles.imgStartchart} style={{ opacity: `${opacity[1]}` }} src={orangeStarchart} />
+                      <img className={styles.imgStartchart} style={{ opacity: `${opacity[1]}` }} src={urbanStarchart} />
                     </LazyLoad>
                     <LazyLoad>
-                      <img className={styles.imgStartchart} style={{ opacity: `${opacity[2]}` }} src={redStarchart} />
+                      <img className={styles.imgStartchart} style={{ opacity: `${opacity[2]}` }} src={chnStarchart} />
                     </LazyLoad>
                   </div>
                   <div className={styles.overlay}>
