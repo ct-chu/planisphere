@@ -226,7 +226,7 @@ export default function Home() {
 
   const ZoomToSkyIcon = () => {
     return(
-      <SvgIcon style={{ height: "3vh" }}>
+      <SvgIcon style={{ height: "3.5vh" }}>
         <svg viewBox="0 0 1182 1182" xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" >
             <path d="M593.352,191.596C1037.26,200.331 1152.14,411.603 1131.2,572.477C1096.86,836.357 826.467,989.517 593.352,989.517C249.565,989.517 68.179,726.567 49.478,572.477C33.265,438.885 120.438,309.582 285.011,243.282C418.548,189.486 593.352,191.596 593.352,191.596ZM587.751,350.79L529.704,529.44L341.86,529.44L493.829,639.851L435.782,818.501L587.751,708.09L739.719,818.501L681.673,639.851L833.641,529.44L645.798,529.44L587.751,350.79Z" fill="#000"/>
         </svg>
@@ -234,7 +234,7 @@ export default function Home() {
   )}
   const ZoomOutMaxIcon = () => {
     return(
-      <SvgIcon style={{ height: "3vh" }}>
+      <SvgIcon style={{ height: "3.5vh" }}>
         <svg viewBox="0 0 1182 1182" xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" >
             <path d="M590.551,0C590.551,0 808.724,-5.349 965.91,151.22C1127.77,312.444 1133.24,502.17 1133.24,502.17L1181.1,502.17L1181.1,1039.49L1073.77,1181.1L107.334,1181.1L0,1039.49L0,502.17L47.863,502.17C47.863,502.17 53.332,312.444 215.192,151.22C372.378,-5.349 590.551,0 590.551,0ZM592.932,466.192C592.932,466.192 444.337,464.398 330.821,510.129C190.923,566.488 116.82,676.405 130.602,789.966C146.499,920.954 300.69,1144.48 592.932,1144.48C791.095,1144.48 1020.94,1014.28 1050.14,789.966C1067.94,653.213 970.282,473.617 592.932,466.192ZM588.171,601.518L637.514,753.382L797.194,753.382L668.011,847.24L717.354,999.104L588.171,905.247L458.987,999.104L508.331,847.24L379.147,753.382L538.827,753.382L588.171,601.518Z" fill="#000"/>
         </svg>
@@ -414,15 +414,15 @@ export default function Home() {
                 maxWidth: "3rem",
                 minWidth: 0,
                 minHeight: 0,
-                height: "3vh",
-                width: "3vh",
+                height: "3.5vh",
+                width: "3.5vh",
               }}
             >
               <HelpIcon style={{ height: "2vh", width: "2vh", }} />
             </IconButton>
           </Tooltip>
         </Grid>
-        <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
+        <Divider sx={{ paddingTop: "3.5vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
           <Typography variant="h3" color="common.white">{displayContent.gotoT}</Typography>
         </Divider>
         <Autocomplete
@@ -436,8 +436,8 @@ export default function Home() {
             setDaysInMonth(newValue)
           }}
           sx={{ width: "20vh", paddingBottom: "1vh" }}
-          renderInput={(params) => <TextField {...params} inputProps = {{...params.inputProps, sx: { fontSize: {xs: "3vh", md: "1.8vh"}, }}} label={<h6>{displayContent.month}</h6>} />}
-          ListboxProps={{ sx: { fontSize: {xs: "4vh", md: "1.8vh"}} }}
+          renderInput={(params) => <TextField {...params} inputProps = {{...params.inputProps, sx: { fontSize: {xs: "3.5vh", md: "1.8vh"}, }}} label={<h6>{displayContent.month}</h6>} />}
+          ListboxProps={{ sx: { fontSize: {xs: "3.5vh", md: "1.8vh"}} }}
         />
         <Autocomplete
           size="small"
@@ -449,8 +449,8 @@ export default function Home() {
             setDay(newValue)
           }}
           sx={{ width: "20vh", paddingBottom: "1vh" }}
-          renderInput={(params) => <TextField {...params} inputProps = {{...params.inputProps, sx: { fontSize: {xs: "3vh", md: "1.8vh"}, }}} label={<h6>{displayContent.day}</h6>} />}
-          ListboxProps={{ sx: { fontSize: {xs: "4vh", md: "1.8vh"}} }}
+          renderInput={(params) => <TextField {...params} inputProps = {{...params.inputProps, sx: { fontSize: {xs: "3.5vh", md: "1.8vh"}, }}} label={<h6>{displayContent.day}</h6>} />}
+          ListboxProps={{ sx: { fontSize: {xs: "3.5vh", md: "1.8vh"}} }}
         />
         <Autocomplete
           size="small"
@@ -462,8 +462,8 @@ export default function Home() {
             setTime(newTime);
           }}
           sx={{ width: "20vh", paddingBottom: "1vh" }}
-          renderInput={(displayTime) => <TextField {...displayTime} inputProps = {{...displayTime.inputProps, sx: { fontSize: {xs: "3vh", md: "1.8vh"}, }}} label={<h6>{displayContent.time}</h6>} />}
-          ListboxProps={{ sx: { fontSize: {xs: "4vh", md: "1.8vh"}} }}
+          renderInput={(displayTime) => <TextField {...displayTime} inputProps = {{...displayTime.inputProps, sx: { fontSize: {xs: "3.5vh", md: "1.8vh"}, }}} label={<h6>{displayContent.time}</h6>} />}
+          ListboxProps={{ sx: { fontSize: {xs: "3.5vh", md: "1.8vh"}} }}
         />
         <Button
           variant="contained"
@@ -474,18 +474,18 @@ export default function Home() {
             backgroundColor: "#bf616a",
             paddingLeft: 10,
             paddingRight: 10,
-            paddingTop: 3,
+            paddingTop: 3, 
             paddingBottom: 3,
             maxWidth: "3rem",
             minWidth: 0,
             minHeight: 0,
             marginRight: "0.3rem",
-            height: "4vh",
+            height: "3.5vh",
           }}
         >
           <Typography variant="h3">GO</Typography>
         </Button>
-        <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
+        <Divider sx={{ paddingTop: "3.5vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
           <Typography variant="h3" color="common.white">{displayContent.rotation}</Typography>
         </Divider>
         <item>
@@ -523,11 +523,11 @@ export default function Home() {
                 minWidth: 0,
                 minHeight: 0,
                 marginRight: "0.3rem",
-                height: "4vh",
+                height: "3.5vh",
                 width: "5vh",
               }}
             >
-              <PlayArrow style={{ height: "4vh", }} />
+              <PlayArrow style={{ height: "3.5vh", }} />
             </Button>
             <Button
               variant="contained"
@@ -549,11 +549,11 @@ export default function Home() {
                 minWidth: 0,
                 minHeight: 0,
                 marginRight: "0.3rem",
-                height: "4vh",
+                height: "3.5vh",
                 width: "5vh",
               }}
             >
-              <Stop style={{ height: "4vh", }} />
+              <Stop style={{ height: "3.5vh", }} />
             </Button>
             <Tooltip title={displayContent.rotationInfo}>
               <IconButton
@@ -568,8 +568,8 @@ export default function Home() {
                   maxWidth: "3rem",
                   minWidth: 0,
                   minHeight: 0,
-                  height: "3vh",
-                  width: "3vh",
+                  height: "3.5vh",
+                  width: "3.5vh",
                 }}
               >
                 <HelpIcon style={{ height: "2vh", width: "2vh", }} />
@@ -577,11 +577,11 @@ export default function Home() {
             </Tooltip>
           </Grid>
         </item>
-        <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
+        <Divider sx={{ paddingTop: "3.5vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
           <Typography variant="h3" color="common.white">{displayContent.zoom}</Typography>
         </Divider>
         <ZoomControls />
-        <Divider sx={{ paddingTop: "3vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
+        <Divider sx={{ paddingTop: "3.5vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
           <Typography variant="h3" color="common.white">Language</Typography>
         </Divider>
         <ToggleButtonGroup
@@ -631,12 +631,12 @@ export default function Home() {
             minWidth: 0,
             minHeight: 0,
             marginRight: "0.3rem",
-            height: "4vh",
+            height: "3.5vh",
             width: "5vh",
           }}
           onClick={() => zoomIn()}
         >
-          <ZoomInIcon style={{ height: "3vh", }} />
+          <ZoomInIcon style={{ height: "3.5vh", }} />
         </Button>
         <Button
           variant="contained"
@@ -653,12 +653,12 @@ export default function Home() {
             minWidth: 0,
             minHeight: 0,
             marginRight: "0.3rem",
-            height: "4vh",
+            height: "3.5vh",
             width: "5vh",
           }}
           onClick={() => zoomOut()}
         >
-          <ZoomOutIcon style={{ height: "3vh", }} />
+          <ZoomOutIcon style={{ height: "3.5vh", }} />
         </Button>
         <Button
           variant="contained"
@@ -675,12 +675,12 @@ export default function Home() {
             minWidth: 0,
             minHeight: 0,
             marginRight: "0.3rem",
-            height: "4vh",
+            height: "3.5vh",
             width: "5vh",
           }}
           onClick={() => zoomToElement("skyarea",1.55,200)}
         >
-          <ZoomToSkyIcon style={{ height: "3vh" }}/>
+          <ZoomToSkyIcon style={{ height: "3.5vh" }}/>
         </Button>
         <Button
           variant="contained"
@@ -696,7 +696,7 @@ export default function Home() {
             maxWidth: "3rem",
             minWidth: 0,
             minHeight: 0,
-            height: "4vh",
+            height: "3.5vh",
             width: "5vh",
           }}
           onClick={() => resetTransform()}
