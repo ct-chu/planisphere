@@ -4,20 +4,18 @@ import styles from './page.module.css'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
-import { Typography, TextField, Autocomplete, Button, Divider, ToggleButton, ToggleButtonGroup, Backdrop, IconButton, Tooltip, SpeedDial, SpeedDialAction, SvgIcon } from '@mui/material';
+import { Typography, Select, ListSubheader, MenuItem, Button, Divider, ToggleButton, ToggleButtonGroup, Backdrop, IconButton, Tooltip, SpeedDial, SpeedDialAction, SvgIcon } from '@mui/material';
 
 // import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 // import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
 import ZoomOutIcon from '@mui/icons-material/ZoomOut';
-import ZoomInMapIcon from '@mui/icons-material/ZoomInMap';
 import HelpIcon from '@mui/icons-material/Help';
 import { MoreHoriz, PlayArrow, Stop } from '@mui/icons-material';
 import HomeIcon from '@mui/icons-material/Home';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
-import SettingsIcon from '@mui/icons-material/Settings';
 
 import React, { useState, useEffect, version } from 'react';
 import { TransformWrapper, TransformComponent, useControls } from "react-zoom-pan-pinch";
@@ -28,7 +26,7 @@ import { prefix } from './prefix.js';
 
 const jacket = `${prefix}/STARMAP_jacket_front.svg`
 const landscapeGIF = `${prefix}/landscape.gif`
-const versionInfo = "v1.1.1(20240617) by ctchu@HKNEAC"
+const versionInfo = "v1.1.2(20240704) by ctchu@HKNEAC"
 
 const darkTheme = createTheme({
   palette: {
@@ -425,46 +423,61 @@ export default function Home() {
         <Divider sx={{ paddingTop: "3.5vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
           <Typography variant="h3" color="common.white">{displayContent.gotoT}</Typography>
         </Divider>
-        <Autocomplete
+        <div>
+        <Select
           size="small"
-          disablePortal
-          selectOnFocus
-          options={displayMonths}
+          displayEmpty
+          autoWidth
+          sx={{ marginRight: "1vh", marginBottom: "1vh" }}
           value={month}
-          onChange={(event, newValue) => {
-            setMonth(newValue)
-            setDaysInMonth(newValue)
+          onChange={(event) => {
+            setMonth(event.target.value)
+            setDaysInMonth(event.target.value)
           }}
-          sx={{ width: "20vh", paddingBottom: "1vh" }}
-          renderInput={(params) => <TextField {...params} inputProps = {{...params.inputProps, sx: { fontSize: {xs: "3.5vh", md: "1.8vh"}, }}} label={<h6>{displayContent.month}</h6>} />}
-          ListboxProps={{ sx: { fontSize: {xs: "3.5vh", md: "1.8vh"}} }}
-        />
-        <Autocomplete
+        >
+          {displayMonths.map(displayMonth => {
+            return (
+              <MenuItem value={displayMonth}>{displayMonth}</MenuItem>
+          )})}
+        </Select>
+
+        <Select
           size="small"
-          disablePortal
-          selectOnFocus
-          options={days}
+          displayEmpty
+          autoWidth
           value={day}
-          onChange={(event, newValue) => {
-            setDay(newValue)
+          onChange={(event) => {
+            setDay(event.target.value)
           }}
-          sx={{ width: "20vh", paddingBottom: "1vh" }}
-          renderInput={(params) => <TextField {...params} inputProps = {{...params.inputProps, sx: { fontSize: {xs: "3.5vh", md: "1.8vh"}, }}} label={<h6>{displayContent.day}</h6>} />}
-          ListboxProps={{ sx: { fontSize: {xs: "3.5vh", md: "1.8vh"}} }}
-        />
-        <Autocomplete
+        >
+          {days.map(day => {
+            if (language == "hk") {
+              return (<MenuItem value={day}>{day}日</MenuItem>)
+            } else {
+              return (<MenuItem value={day}>{day}</MenuItem>)
+            }
+          })}
+        </Select>
+        </div>
+        <Select
           size="small"
-          disablePortal
-          selectOnFocus
-          options={times}
+          displayEmpty
+          autoWidth
+          sx={{ marginBottom: "1vh" }}
           value={time}
-          onChange={(eventT, newTime) => {
-            setTime(newTime);
+          onChange={(event) => {
+            setTime(event.target.value)
           }}
-          sx={{ width: "20vh", paddingBottom: "1vh" }}
-          renderInput={(displayTime) => <TextField {...displayTime} inputProps = {{...displayTime.inputProps, sx: { fontSize: {xs: "3.5vh", md: "1.8vh"}, }}} label={<h6>{displayContent.time}</h6>} />}
-          ListboxProps={{ sx: { fontSize: {xs: "3.5vh", md: "1.8vh"}} }}
-        />
+        >
+          <ListSubheader>PM</ListSubheader>
+          <MenuItem value={times[0]}>{times[0]}</MenuItem>
+          {times.map(time => {
+            if (time == "12:00 AM"){
+                return ([<ListSubheader>AM</ListSubheader>, <MenuItem value={time}>{time}</MenuItem>])
+            }
+            return (<MenuItem value={time}>{time}</MenuItem>)
+          })}
+        </Select>
         <Button
           variant="contained"
           onClick={rotateToTime}
