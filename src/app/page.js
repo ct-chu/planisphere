@@ -84,7 +84,7 @@ export default function Home() {
 
   const months = {
     hk: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
-    en:["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    en: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
   }
   const monthOffsetValues = [0, 30.49, 58.11, 88.65, 118.33, 148.86, 178.52, 209.04, 239.64, 269.15, 299.78, 329.37]
   const dayDeg = 0.98
@@ -185,7 +185,7 @@ export default function Home() {
       zoomOut: "縮小星圖",
       zoomReset: "重設縮放（縮到最少）",
       more: "更多",
-      zoomToSky:"將天空置中",
+      zoomToSky: "將天空置中",
     },
     en: {
       title: "Interactive Planisphere",
@@ -209,35 +209,37 @@ export default function Home() {
       zoomOut: "Zoom out planisphere",
       zoomReset: "Reset zoom (zoom out to smallest)",
       more: "More",
-      zoomToSky:"Centre on the sky",
+      zoomToSky: "Centre on the sky",
     }
   }
 
   const [displayContent, setDisplayContent] = useState(content.hk)
 
   const actions = [
-    {name: displayContent.homepage, icon: <HomeIcon />, url: "http://www.hokoon.edu.hk/"},
-    {name: "Facebook", icon: <FacebookIcon />, url: "https://www.facebook.com/hokoon.astro/"},
-    {name: "Instagram", icon: <InstagramIcon />, url: "https://www.instagram.com/hokoon.astro/"},
-    {name: "YouTube", icon: <YouTubeIcon />, url: "https://www.youtube.com/@HokoonChannel"},
+    { name: displayContent.homepage, icon: <HomeIcon />, url: "http://www.hokoon.edu.hk/" },
+    { name: "Facebook", icon: <FacebookIcon />, url: "https://www.facebook.com/hokoon.astro/" },
+    { name: "Instagram", icon: <InstagramIcon />, url: "https://www.instagram.com/hokoon.astro/" },
+    { name: "YouTube", icon: <YouTubeIcon />, url: "https://www.youtube.com/@HokoonChannel" },
   ]
 
   const ZoomToSkyIcon = () => {
-    return(
+    return (
       <SvgIcon style={{ height: "3.5vh" }}>
         <svg viewBox="0 0 1182 1182" xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" >
-            <path d="M593.352,191.596C1037.26,200.331 1152.14,411.603 1131.2,572.477C1096.86,836.357 826.467,989.517 593.352,989.517C249.565,989.517 68.179,726.567 49.478,572.477C33.265,438.885 120.438,309.582 285.011,243.282C418.548,189.486 593.352,191.596 593.352,191.596ZM587.751,350.79L529.704,529.44L341.86,529.44L493.829,639.851L435.782,818.501L587.751,708.09L739.719,818.501L681.673,639.851L833.641,529.44L645.798,529.44L587.751,350.79Z" fill="#000"/>
+          <path d="M593.352,191.596C1037.26,200.331 1152.14,411.603 1131.2,572.477C1096.86,836.357 826.467,989.517 593.352,989.517C249.565,989.517 68.179,726.567 49.478,572.477C33.265,438.885 120.438,309.582 285.011,243.282C418.548,189.486 593.352,191.596 593.352,191.596ZM587.751,350.79L529.704,529.44L341.86,529.44L493.829,639.851L435.782,818.501L587.751,708.09L739.719,818.501L681.673,639.851L833.641,529.44L645.798,529.44L587.751,350.79Z" fill="#000" />
         </svg>
       </SvgIcon>
-  )}
+    )
+  }
   const ZoomOutMaxIcon = () => {
-    return(
+    return (
       <SvgIcon style={{ height: "3.5vh" }}>
         <svg viewBox="0 0 1182 1182" xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" >
-            <path d="M590.551,0C590.551,0 808.724,-5.349 965.91,151.22C1127.77,312.444 1133.24,502.17 1133.24,502.17L1181.1,502.17L1181.1,1039.49L1073.77,1181.1L107.334,1181.1L0,1039.49L0,502.17L47.863,502.17C47.863,502.17 53.332,312.444 215.192,151.22C372.378,-5.349 590.551,0 590.551,0ZM592.932,466.192C592.932,466.192 444.337,464.398 330.821,510.129C190.923,566.488 116.82,676.405 130.602,789.966C146.499,920.954 300.69,1144.48 592.932,1144.48C791.095,1144.48 1020.94,1014.28 1050.14,789.966C1067.94,653.213 970.282,473.617 592.932,466.192ZM588.171,601.518L637.514,753.382L797.194,753.382L668.011,847.24L717.354,999.104L588.171,905.247L458.987,999.104L508.331,847.24L379.147,753.382L538.827,753.382L588.171,601.518Z" fill="#000"/>
+          <path d="M590.551,0C590.551,0 808.724,-5.349 965.91,151.22C1127.77,312.444 1133.24,502.17 1133.24,502.17L1181.1,502.17L1181.1,1039.49L1073.77,1181.1L107.334,1181.1L0,1039.49L0,502.17L47.863,502.17C47.863,502.17 53.332,312.444 215.192,151.22C372.378,-5.349 590.551,0 590.551,0ZM592.932,466.192C592.932,466.192 444.337,464.398 330.821,510.129C190.923,566.488 116.82,676.405 130.602,789.966C146.499,920.954 300.69,1144.48 592.932,1144.48C791.095,1144.48 1020.94,1014.28 1050.14,789.966C1067.94,653.213 970.282,473.617 592.932,466.192ZM588.171,601.518L637.514,753.382L797.194,753.382L668.011,847.24L717.354,999.104L588.171,905.247L458.987,999.104L508.331,847.24L379.147,753.382L538.827,753.382L588.171,601.518Z" fill="#000" />
         </svg>
       </SvgIcon>
-  )}
+    )
+  }
 
   // const rotate10deg = () => {
   //   setRotateDeg(rotateDeg + 10)
@@ -260,9 +262,9 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    
+
     (screen.type === "portrait-primary") || (screen.type === "portrait-secondary") ? setLandscapeReminder(true) : setLandscapeReminder(false)
-    console.log("screen type = "+ screen.type)
+    console.log("screen type = " + screen.type)
   }, [screen])
 
   const setDaysInMonth = (month) => {
@@ -291,10 +293,10 @@ export default function Home() {
     let selectedTimeOffset = timeOffsetValues[time]
     let totalOffset = selectedMonthOffset + selectedDayOffset + selectedTimeOffset + animationDeg
     let rotationAngle = Math.abs(totalOffset - rotateDeg)
-    let rotationAngleMod = Math.abs(totalOffset%360 - rotateDeg%360)
-    if (rotationAngle > 0.1 && rotationAngleMod > 0.1 ) {
-    setRotateStyle(Math.sqrt(Math.abs(closestOrigin + totalOffset - rotateDeg)) / 15 + "s ease-in-out, opacity .15s ease-in-out")
-    setRotateDeg(closestOrigin + totalOffset)
+    let rotationAngleMod = Math.abs(totalOffset % 360 - rotateDeg % 360)
+    if (rotationAngle > 0.1 && rotationAngleMod > 0.1) {
+      setRotateStyle(Math.sqrt(Math.abs(closestOrigin + totalOffset - rotateDeg)) / 15 + "s ease-in-out, opacity .15s ease-in-out")
+      setRotateDeg(closestOrigin + totalOffset)
     }
   }
 
@@ -340,17 +342,17 @@ export default function Home() {
     }
   }
 
-  function getCurrentRotation(el){
+  function getCurrentRotation(el) {
     var st = window.getComputedStyle(el, null);
     var tm = st.getPropertyValue("-webkit-transform") ||
-             st.getPropertyValue("-moz-transform") ||
-             st.getPropertyValue("-ms-transform") ||
-             st.getPropertyValue("-o-transform") ||
-             st.getPropertyValue("transform") ||
-             "none";
+      st.getPropertyValue("-moz-transform") ||
+      st.getPropertyValue("-ms-transform") ||
+      st.getPropertyValue("-o-transform") ||
+      st.getPropertyValue("transform") ||
+      "none";
     if (tm != "none") {
       var values = tm.split('(')[1].split(')')[0].split(',');
-      var angle = Math.atan2(values[1],values[0]) * (180/Math.PI);
+      var angle = Math.atan2(values[1], values[0]) * (180 / Math.PI);
       return (angle < 0 ? angle + 360 : angle);
     }
     return 0;
@@ -363,18 +365,18 @@ export default function Home() {
         direction="column"
         alignItems="center"
         spacing={1}
-        paddingTop= "8vh"
-        paddingBottom= "8vh"
+        paddingTop="8vh"
+        paddingBottom="8vh"
         margin="0"
       >
-        <Typography variant="h1" color="common.white" style={{ paddingBottom:5 }}>
+        <Typography variant="h1" color="common.white" style={{ paddingBottom: 5 }}>
           {displayContent.title}
         </Typography>
         <Typography variant="h4" textAlign={"center"} color="#4c566a">
           {versionInfo}
         </Typography>
         <Divider sx={{ paddingTop: "2vh", paddingBottom: "1vh" }} orientation="horizontal" flexItem>
-          <Typography variant="h3"  color="common.white">{displayContent.chooseChart}</Typography>
+          <Typography variant="h3" color="common.white">{displayContent.chooseChart}</Typography>
         </Divider>
         <Grid>
           <ToggleButtonGroup
@@ -395,9 +397,9 @@ export default function Home() {
               height: "5vh",
             }}
           >
-            <ToggleButton value={1} style={{textTransform: "none",}}>{displayContent.iauChart}</ToggleButton>
-            <ToggleButton value={2} style={{textTransform: "none",}}>{displayContent.urbanChart}</ToggleButton>
-            <ToggleButton value={3} style={{textTransform: "none",}}>{displayContent.cnChart}</ToggleButton>
+            <ToggleButton value={1} style={{ textTransform: "none", }}>{displayContent.iauChart}</ToggleButton>
+            <ToggleButton value={2} style={{ textTransform: "none", }}>{displayContent.urbanChart}</ToggleButton>
+            <ToggleButton value={3} style={{ textTransform: "none", }}>{displayContent.cnChart}</ToggleButton>
           </ToggleButtonGroup>
           <Tooltip title={displayContent.chartInfo}>
             <IconButton
@@ -424,40 +426,41 @@ export default function Home() {
           <Typography variant="h3" color="common.white">{displayContent.gotoT}</Typography>
         </Divider>
         <div>
-        <Select
-          size="small"
-          displayEmpty
-          autoWidth
-          sx={{ marginRight: "1vh", marginBottom: "1vh" }}
-          value={month}
-          onChange={(event) => {
-            setMonth(event.target.value)
-            setDaysInMonth(event.target.value)
-          }}
-        >
-          {displayMonths.map(displayMonth => {
-            return (
-              <MenuItem value={displayMonth}>{displayMonth}</MenuItem>
-          )})}
-        </Select>
+          <Select
+            size="small"
+            displayEmpty
+            autoWidth
+            sx={{ marginRight: "1vh", marginBottom: "1vh" }}
+            value={month}
+            onChange={(event) => {
+              setMonth(event.target.value)
+              setDaysInMonth(event.target.value)
+            }}
+          >
+            {displayMonths.map(displayMonth => {
+              return (
+                <MenuItem value={displayMonth}>{displayMonth}</MenuItem>
+              )
+            })}
+          </Select>
 
-        <Select
-          size="small"
-          displayEmpty
-          autoWidth
-          value={day}
-          onChange={(event) => {
-            setDay(event.target.value)
-          }}
-        >
-          {days.map(day => {
-            if (language == "hk") {
-              return (<MenuItem value={day}>{day}日</MenuItem>)
-            } else {
-              return (<MenuItem value={day}>{day}</MenuItem>)
-            }
-          })}
-        </Select>
+          <Select
+            size="small"
+            displayEmpty
+            autoWidth
+            value={day}
+            onChange={(event) => {
+              setDay(event.target.value)
+            }}
+          >
+            {days.map(day => {
+              if (language == "hk") {
+                return (<MenuItem value={day}>{day}日</MenuItem>)
+              } else {
+                return (<MenuItem value={day}>{day}</MenuItem>)
+              }
+            })}
+          </Select>
         </div>
         <Select
           size="small"
@@ -472,8 +475,8 @@ export default function Home() {
           <ListSubheader>PM</ListSubheader>
           <MenuItem value={times[0]}>{times[0]}</MenuItem>
           {times.map(time => {
-            if (time == "12:00 AM"){
-                return ([<ListSubheader>AM</ListSubheader>, <MenuItem value={time}>{time}</MenuItem>])
+            if (time == "12:00 AM") {
+              return ([<ListSubheader>AM</ListSubheader>, <MenuItem value={time}>{time}</MenuItem>])
             }
             return (<MenuItem value={time}>{time}</MenuItem>)
           })}
@@ -487,7 +490,7 @@ export default function Home() {
             backgroundColor: "#bf616a",
             paddingLeft: 10,
             paddingRight: 10,
-            paddingTop: 3, 
+            paddingTop: 3,
             paddingBottom: 3,
             maxWidth: "3rem",
             minWidth: 0,
@@ -521,7 +524,7 @@ export default function Home() {
               size="small"
               title={displayContent.startRotation}
               aria-label={displayContent.startRotation}
-              onClick={()=>{
+              onClick={() => {
                 setAnimation("rotation 24s infinite linear")
                 setAnimationState("running")
               }}
@@ -547,7 +550,7 @@ export default function Home() {
               size="small"
               title={displayContent.stopRotation}
               aria-label={displayContent.stopRotation}
-              onClick={()=>{
+              onClick={() => {
                 setAnimationState("paused")
                 // setAnimation("none !important")
               }}
@@ -615,8 +618,8 @@ export default function Home() {
             height: "5vh",
           }}
         >
-          <ToggleButton value={"hk"} style={{textTransform: "none",}}>中文</ToggleButton>
-          <ToggleButton value={"en"} style={{textTransform: "none",}}>English</ToggleButton>
+          <ToggleButton value={"hk"} style={{ textTransform: "none", }}>中文</ToggleButton>
+          <ToggleButton value={"en"} style={{ textTransform: "none", }}>English</ToggleButton>
         </ToggleButtonGroup>
       </Grid>
     )
@@ -691,9 +694,9 @@ export default function Home() {
             height: "3.5vh",
             width: "5vh",
           }}
-          onClick={() => zoomToElement("skyarea",1.55,200)}
+          onClick={() => zoomToElement("skyarea", 1.55, 200)}
         >
-          <ZoomToSkyIcon style={{ height: "3.5vh" }}/>
+          <ZoomToSkyIcon style={{ height: "3.5vh" }} />
         </Button>
         <Button
           variant="contained"
@@ -734,7 +737,7 @@ export default function Home() {
           alignContent="center"
           justifyContent="center"
         >
-          <img src={landscapeGIF}/>
+          <img src={landscapeGIF} />
           <Typography
             variant="h3"
             align="center"
@@ -753,8 +756,8 @@ export default function Home() {
         FabProps={{
           sx: {
             bgcolor: 'secondary.main',
-            height: {xs: "2rem", md: "2.5rem"},
-            width: {xs: "2rem", md: "2.5rem"},
+            height: { xs: "2rem", md: "2.5rem" },
+            width: { xs: "2rem", md: "2.5rem" },
             '&:hover': {
               bgcolor: 'secondary.main',
             }
@@ -767,14 +770,14 @@ export default function Home() {
             icon={action.icon}
             tooltipTitle={action.name}
             tooltipOpen
-            onClick={(event)=>{window.open(action.url)}}
+            onClick={(event) => { window.open(action.url) }}
           />
         ))}
       </SpeedDial>
       <div className={styles.container} maxWidth={false}>
         <TransformWrapper
           wheel={{ disabled: true }}
-          panning={{velocityDisabled: true}}
+          panning={{ velocityDisabled: true }}
           disablePadding={true}
         >
           <Grid container
@@ -808,7 +811,7 @@ export default function Home() {
                 }}
               >
                 <div className={styles.starchart}>
-                  <div id="rotationWrapper" style={{ height: "100%", width: "100%", transformOrigin: "50% 50%", transition: `${rotateStyle}`, rotate: `${rotateDeg}deg`, position: "absolute", animation: `${animation}`, animationPlayState: `${animationState}`}}>
+                  <div id="rotationWrapper" style={{ height: "100%", width: "100%", transformOrigin: "50% 50%", transition: `${rotateStyle}`, rotate: `${rotateDeg}deg`, position: "absolute", animation: `${animation}`, animationPlayState: `${animationState}` }}>
                     <img className={styles.imgStartchart} style={{ opacity: `${opacity[0]}` }} src={iauStarchart} />
                     <LazyLoad>
                       <img className={styles.imgStartchart} style={{ opacity: `${opacity[1]}` }} src={urbanStarchart} />
@@ -819,7 +822,7 @@ export default function Home() {
                   </div>
                   <div className={styles.overlay}>
                     <img height="100%" src={jacket} />
-                    <div className={styles.overlay} id="skyarea" style={{height:"55%", width:"75%", position: "absolute", right:"12.5%", bottom:"3%"}}></div>
+                    <div className={styles.overlay} id="skyarea" style={{ height: "55%", width: "75%", position: "absolute", right: "12.5%", bottom: "3%" }}></div>
                   </div>
                 </div>
               </TransformComponent>
