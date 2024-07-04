@@ -113,11 +113,6 @@ img {
   }
 }
 
-.MuiBackdrop-root {
-  background-color: rgba(0,0,0,1);
-  opacity: 1;
-}
-
 .noto-sans-tc-regular {
   font-family: "Noto Sans TC", sans-serif;
   font-optical-sizing: auto;
