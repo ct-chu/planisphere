@@ -439,7 +439,7 @@ export default function Home() {
           >
             {displayMonths.map(displayMonth => {
               return (
-                <MenuItem value={displayMonth}>{displayMonth}</MenuItem>
+                <MenuItem key={displayMonth} value={displayMonth}>{displayMonth}</MenuItem>
               )
             })}
           </Select>
@@ -455,9 +455,9 @@ export default function Home() {
           >
             {days.map(day => {
               if (language == "hk") {
-                return (<MenuItem value={day}>{day}日</MenuItem>)
+                return (<MenuItem key={day} value={day}>{day}日</MenuItem>)
               } else {
-                return (<MenuItem value={day}>{day}</MenuItem>)
+                return (<MenuItem key={day} value={day}>{day}</MenuItem>)
               }
             })}
           </Select>
@@ -476,9 +476,9 @@ export default function Home() {
           <MenuItem value={times[0]}>{times[0]}</MenuItem>
           {times.map(time => {
             if (time == "12:00 AM") {
-              return ([<ListSubheader>AM</ListSubheader>, <MenuItem value={time}>{time}</MenuItem>])
+              return ([<ListSubheader key="AM" >AM</ListSubheader>, <MenuItem key={time} value={time}>{time}</MenuItem>])
             }
-            return (<MenuItem value={time}>{time}</MenuItem>)
+            return (<MenuItem key={time} value={time}>{time}</MenuItem>)
           })}
         </Select>
         <Button
