@@ -26,7 +26,7 @@ import { prefix } from './prefix.js';
 
 const jacket = `${prefix}/STARMAP_jacket_front.svg`
 const landscapeGIF = `${prefix}/landscape.gif`
-const versionInfo = "v1.1.2(20240704) by ctchu@HKNEAC"
+const versionInfo = "v1.1.3(20250408) by ctchu@HKNEAC"
 
 const darkTheme = createTheme({
   palette: {
