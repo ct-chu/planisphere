@@ -21,8 +21,8 @@
     "lang": "zh-HK",
     "name": "HK Starmap",
     "short_name": "HK Starmap",
-    "start_url": "http://www.hokoon.edu.hk/planisphere/",
-    "scope": "http://www.hokoon.edu.hk/planisphere/",
+    "start_url": "https://www.hokoon.edu.hk/planisphere/",
+    "scope": "https://www.hokoon.edu.hk/planisphere/",
     "description": "可觀天文館的網上互動旋轉星圖 An Online Interactive Planisphere from HKNEAC",
     "id": "edu.hk.hokoon.planisphere"
 }
